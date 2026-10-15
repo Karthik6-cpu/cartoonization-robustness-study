@@ -1,0 +1,5 @@
+Condition,Method,Matched images evaluated,Correct predictions,Top1 accuracy (%)
+"Gaussian noise (std=15, seed=42)",Original,297,215,72.39
+"Gaussian noise (std=15, seed=42)",OpenCV,297,40,13.47
+"Gaussian noise (std=15, seed=42)",AnimeGANv2,297,181,60.94
+"Gaussian noise (std=15, seed=42)",Stable Diffusion,297,72,24.24
