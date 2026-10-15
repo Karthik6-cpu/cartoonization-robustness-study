@@ -1,0 +1,5 @@
+Method,Images evaluated,Correct predictions,Top1 accuracy (%)
+Blurred original,292,184,63.01
+OpenCV,292,36,12.33
+AnimeGANv2,292,117,40.07
+Stable Diffusion,292,67,22.95

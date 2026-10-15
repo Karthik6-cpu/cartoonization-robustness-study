@@ -1,0 +1,5 @@
+Method,Clean recognition accuracy (%),Matched images,Prediction consistency (%),Quality images evaluated,Mean SSIM,Mean PSNR (dB)
+Original,80.67,,,,,
+OpenCV,18.33,300.0,21.0,300.0,0.6469,17.6617
+AnimeGANv2,59.33,300.0,65.33,300.0,0.6564,18.5636
+Stable Diffusion,33.33,294.0,34.69,294.0,0.4747,18.3549

@@ -1,0 +1,5 @@
+Method,Samples,Correct predictions,Overall accuracy (%)
+Original,300,242,80.67
+OpenCV,300,55,18.33
+AnimeGANv2,300,178,59.33
+Stable Diffusion,294,98,33.33

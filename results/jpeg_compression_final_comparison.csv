@@ -1,0 +1,5 @@
+Method,Images evaluated,Correct predictions,Top1 accuracy (%),Mean processing time (seconds/image)
+JPEG-compressed original,294,225,76.53,
+OpenCV,294,51,17.35,0.047089634706680907
+AnimeGANv2,294,170,57.82,0.015949586170011822
+Stable Diffusion,294,91,30.95,2.512035381180275

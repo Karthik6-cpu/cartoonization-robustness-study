@@ -1,0 +1,12 @@
+,Tench,Springer,Cassette,Chain saw,Church,French horn,Garbage truck,Gas pump,Golf ball,Parachute,Other classes
+Tench,0,0,0,0,0,0,0,0,0,0,30
+Springer,0,2,0,0,0,0,0,0,0,0,28
+Cassette,0,0,0,0,0,0,0,1,0,0,29
+Chain saw,0,0,0,6,0,0,0,0,0,0,24
+Church,0,0,0,0,4,0,0,0,0,0,26
+French horn,0,0,0,0,0,3,0,0,0,0,27
+Garbage truck,0,0,0,0,0,0,4,0,0,0,26
+Gas pump,0,0,0,0,0,0,0,10,0,0,20
+Golf ball,0,0,0,0,0,0,0,0,12,0,18
+Parachute,0,0,0,0,0,0,0,0,0,14,16
+Other classes,0,0,0,0,0,0,0,0,0,0,0

@@ -1,0 +1,5 @@
+Method,Evaluated,Correct,Failed_outputs,Accuracy_percent,Mean_time_seconds
+Original,300,242,0,80.67,
+OpenCV,300,55,0,18.33,0.0507
+AnimeGANv2,300,178,0,59.33,0.2065
+Stable Diffusion,294,98,6,33.33,2.446

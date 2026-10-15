@@ -1,0 +1,13 @@
+image_path,True label,Original prediction,OpenCV prediction,AnimeGANv2 prediction,Stable Diffusion prediction,OpenCV correct,AnimeGANv2 correct,Stable Diffusion correct
+/content/research_dataset/imagenette2-320/val/n01440764/n01440764_21161.JPEG,Tench,0,251,0,529,False,True,False
+/content/research_dataset/imagenette2-320/val/n01440764/n01440764_9720.JPEG,Tench,0,841,0,0,False,True,True
+/content/research_dataset/imagenette2-320/val/n01440764/n01440764_4341.JPEG,Tench,0,954,0,390,False,True,False
+/content/research_dataset/imagenette2-320/val/n01440764/n01440764_10110.JPEG,Tench,0,954,0,106,False,True,False
+/content/research_dataset/imagenette2-320/val/n01440764/n01440764_1310.JPEG,Tench,0,251,394,614,False,False,False
+/content/research_dataset/imagenette2-320/val/n01440764/n01440764_11602.JPEG,Tench,0,611,0,465,False,True,False
+/content/research_dataset/imagenette2-320/val/n01440764/n01440764_6410.JPEG,Tench,0,954,0,0,False,True,True
+/content/research_dataset/imagenette2-320/val/n01440764/n01440764_9191.JPEG,Tench,0,954,0,552,False,True,False
+/content/research_dataset/imagenette2-320/val/n01440764/n01440764_13770.JPEG,Tench,0,684,0,452,False,True,False
+/content/research_dataset/imagenette2-320/val/n01440764/n01440764_14172.JPEG,Tench,0,954,0,461,False,True,False
+/content/research_dataset/imagenette2-320/val/n01440764/n01440764_8221.JPEG,Tench,0,697,0,0,False,True,True
+/content/research_dataset/imagenette2-320/val/n01440764/n01440764_9931.JPEG,Tench,0,251,0,388,False,True,False

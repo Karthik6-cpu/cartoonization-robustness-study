@@ -1,0 +1,5 @@
+Method,Images evaluated,Correct predictions,Top1 accuracy (%),Mean processing time (seconds/image)
+Low-illumination original,295,224,75.93,
+OpenCV,295,49,16.61,0.04753041068666481
+AnimeGANv2,295,140,47.46,0.01626238694336578
+Stable Diffusion,295,69,23.39,2.5076426075491542

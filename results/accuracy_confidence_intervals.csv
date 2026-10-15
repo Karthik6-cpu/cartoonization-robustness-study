@@ -1,0 +1,5 @@
+Method,N,Correct,Accuracy (%),95% CI lower (%),95% CI upper (%)
+Original,300,242,80.67,75.82,84.74
+OpenCV,300,55,18.33,14.36,23.1
+AnimeGANv2,300,178,59.33,53.69,64.74
+Stable Diffusion,294,98,33.33,28.19,38.91

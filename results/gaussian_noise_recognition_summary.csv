@@ -1,0 +1,5 @@
+Method,Clean_accuracy,Noisy_accuracy,Clean_evaluated,Noisy_evaluated,Noisy_failed_outputs,Accuracy_change_percentage_points
+Original,80.67,72.33,300,300,0,-8.34
+OpenCV,18.33,13.67,300,300,0,-4.66
+AnimeGANv2,59.33,61.0,300,300,0,1.67
+Stable Diffusion,33.33,24.24,294,297,3,-9.09

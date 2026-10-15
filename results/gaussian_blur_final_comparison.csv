@@ -1,0 +1,5 @@
+Method,Images evaluated,Correct predictions,Top1 accuracy (%),Mean processing time (seconds/image)
+Blurred original,292,184,63.01,
+OpenCV,292,36,12.33,0.0468305924133225
+AnimeGANv2,292,117,40.07,0.015915851033331166
+Stable Diffusion,292,67,22.95,2.509495144979462

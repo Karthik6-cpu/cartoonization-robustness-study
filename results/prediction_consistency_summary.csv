@@ -1,0 +1,4 @@
+Method,Matched images,Prediction consistency (%),Original accuracy on matched images (%),Transformed accuracy (%)
+OpenCV,300,21.0,80.67,18.33
+AnimeGANv2,300,65.33,80.67,59.33
+Stable Diffusion,294,34.69,80.61,33.33

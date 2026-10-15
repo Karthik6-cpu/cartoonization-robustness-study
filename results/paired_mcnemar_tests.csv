@@ -1,0 +1,7 @@
+Comparison,Matched N,"A correct, B wrong","A wrong, B correct",McNemar p-value,Adjusted p-value,Significant after correction
+Original vs OpenCV,300,187,0,1.0195788231247695e-56,6.117472938748617e-56,True
+Original vs AnimeGANv2,300,72,8,5.375095844566712e-14,3.2250575067400273e-13,True
+Original vs Stable Diffusion,294,147,8,3.1821077320371905e-34,1.9092646392223143e-33,True
+OpenCV vs AnimeGANv2,300,6,129,3.6147289851476084e-31,2.168837391088565e-30,True
+OpenCV vs Stable Diffusion,294,19,64,7.391531707333846e-07,4.434919024400308e-06,True
+AnimeGANv2 vs Stable Diffusion,294,98,22,1.2161033345676802e-12,7.296620007406081e-12,True

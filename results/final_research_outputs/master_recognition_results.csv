@@ -1,0 +1,17 @@
+Condition,Method,Images evaluated,Top1 accuracy (%)
+Gaussian noise,Original,300,72.33
+Gaussian noise,OpenCV,300,13.67
+Gaussian noise,AnimeGANv2,300,61.0
+Gaussian noise,Stable Diffusion,297,24.24
+Gaussian blur,Original,292,63.01
+Gaussian blur,OpenCV,292,12.33
+Gaussian blur,AnimeGANv2,292,40.07
+Gaussian blur,Stable Diffusion,292,22.95
+Low illumination,Original,295,75.93
+Low illumination,OpenCV,295,16.61
+Low illumination,AnimeGANv2,295,47.46
+Low illumination,Stable Diffusion,295,23.39
+JPEG compression,Original,294,76.53
+JPEG compression,OpenCV,294,17.35
+JPEG compression,AnimeGANv2,294,57.82
+JPEG compression,Stable Diffusion,294,30.95

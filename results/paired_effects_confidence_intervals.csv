@@ -1,0 +1,7 @@
+Comparison,Matched N,Accuracy difference (pp),Bootstrap CI lower (pp),Bootstrap CI upper (pp),log10 McNemar p,log10 adjusted p
+Original - OpenCV,300,62.3333,57.0,68.0,-55.9916,-55.2134
+Original - AnimeGANv2,300,21.3333,16.0,26.6667,-13.2696,-12.7925
+Original - Stable Diffusion,294,47.2789,40.8163,53.4014,-33.4973,-32.7983
+OpenCV - AnimeGANv2,300,-41.0,-47.0,-35.0,-30.4419,-29.8399
+OpenCV - Stable Diffusion,294,-15.3061,-21.0884,-9.5238,-6.1313,-6.1313
+AnimeGANv2 - Stable Diffusion,294,25.8503,19.0476,32.6531,-11.915,-11.614
