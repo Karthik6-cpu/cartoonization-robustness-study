@@ -1,0 +1,7 @@
+Method A,Method B,Images,"A correct, B wrong","A wrong, B correct",McNemar p-value,Holm-adjusted p-value,Significant at 0.05
+Original,OpenCV,294,184,0,8.15663e-56,4.89398e-55,True
+Original,AnimeGANv2,294,71,8,9.69112e-14,2.90734e-13,True
+Original,Stable Diffusion,294,147,8,3.18211e-34,1.59105e-33,True
+OpenCV,AnimeGANv2,294,6,127,1.32075e-30,5.28299e-30,True
+OpenCV,Stable Diffusion,294,19,64,7.39153e-07,7.39153e-07,True
+AnimeGANv2,Stable Diffusion,294,98,22,1.2161e-12,2.43221e-12,True

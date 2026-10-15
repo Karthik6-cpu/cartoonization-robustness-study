@@ -1,0 +1,21 @@
+Condition,Method,Images,Correct,Accuracy (%)
+Clean matched,AnimeGANv2,294,174,59.18
+Clean matched,OpenCV,294,53,18.03
+Clean matched,Original,294,237,80.61
+Clean matched,Stable Diffusion,294,98,33.33
+Gaussian noise,AnimeGANv2,297,181,60.94
+Gaussian noise,OpenCV,297,40,13.47
+Gaussian noise,Original,297,215,72.39
+Gaussian noise,Stable Diffusion,297,72,24.24
+Gaussian blur,AnimeGANv2,292,117,40.07
+Gaussian blur,OpenCV,292,36,12.33
+Gaussian blur,Original,292,184,63.01
+Gaussian blur,Stable Diffusion,292,67,22.95
+Low illumination,AnimeGANv2,295,140,47.46
+Low illumination,OpenCV,295,49,16.61
+Low illumination,Original,295,224,75.93
+Low illumination,Stable Diffusion,295,69,23.39
+JPEG compression,AnimeGANv2,294,170,57.82
+JPEG compression,OpenCV,294,51,17.35
+JPEG compression,Original,294,225,76.53
+JPEG compression,Stable Diffusion,294,91,30.95

@@ -1,0 +1,5 @@
+Condition,Method,Images,Correct,Accuracy (%),95% CI lower (%),95% CI upper (%)
+Clean matched,AnimeGANv2,294,174,59.18,53.48,64.65
+Clean matched,OpenCV,294,53,18.03,14.05,22.82
+Clean matched,Original,294,237,80.61,75.71,84.72
+Clean matched,Stable Diffusion,294,98,33.33,28.19,38.91
