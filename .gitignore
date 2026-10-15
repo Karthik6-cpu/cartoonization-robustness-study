@@ -4,3 +4,6 @@ __pycache__/
 .ipynb_checkpoints/
 .venv/
 venv/
+
+# Local research dataset - do not upload to GitHub
+results/imagenette2-320/
