@@ -1,0 +1,5 @@
+Condition,Method,Matched images,Correct predictions,Accuracy (%),CI95 lower (%),CI95 upper (%)
+jpeg_compression,Original,294,225,76.53,71.36,81.01
+jpeg_compression,OpenCV,294,51,17.35,13.45,22.09
+jpeg_compression,AnimeGANv2,294,170,57.82,52.11,63.33
+jpeg_compression,Stable Diffusion,294,91,30.95,25.94,36.45

@@ -1,0 +1,5 @@
+Condition,Method,Matched images,Correct predictions,Accuracy (%),CI95 lower (%),CI95 upper (%)
+gaussian_blur,Original,292,184,63.01,57.34,68.35
+gaussian_blur,OpenCV,292,36,12.33,9.04,16.6
+gaussian_blur,AnimeGANv2,292,117,40.07,34.61,45.78
+gaussian_blur,Stable Diffusion,292,67,22.95,18.49,28.1
