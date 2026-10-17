@@ -1,0 +1,11 @@
+topic,reference,url,status
+Imagenette dataset,fastai. Imagenette: A smaller subset of 10 easily classified classes from ImageNet.,https://github.com/fastai/imagenette,Existing reference; verify access date/version
+ResNet,"He, K., Zhang, X., Ren, S., & Sun, J. (2016). Deep Residual Learning for Image Recognition.",https://arxiv.org/abs/1512.03385,Candidate source; confirm citation style
+Holm correction,"Holm, S. (1979). A simple sequentially rejective multiple test procedure. Scandinavian Journal of Statistics, 6(2), 65–70.",https://www.jstor.org/stable/4615733,Existing reference
+Structural Similarity (SSIM),"Wang, Z., Bovik, A. C., Sheikh, H. R., & Simoncelli, E. P. (2004). Image quality assessment: From error visibility to structural similarity.",https://doi.org/10.1109/TIP.2003.819861,Candidate source; verify bibliographic details
+AnimeGANv2,,,Pending exact repository/checkpoint verification
+Stable Diffusion,,,"Pending exact checkpoint, revision, and licence verification"
+OpenCV cartoonization,,,Pending exact algorithm and implementation verification
+JPEG encoding,,,Pending encoder/library verification
+PSNR,,,Find and verify the source appropriate to the implemented metric
+Paired bootstrap and McNemar tests,,,Verify methodological sources against the actual test implementation

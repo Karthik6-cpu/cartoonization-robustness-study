@@ -1,0 +1,13 @@
+check,complete,notes,status
+Matched dataset and four image conditions,True,"3,925 matched images; original plus three cartoonization methods.",COMPLETE
+Recognition predictions and metrics,True,"157,000 prediction rows reported in project audit.",COMPLETE
+JPEG compression evaluation,True,"Uncompressed, Q95, Q75, Q50 and Q25.",COMPLETE
+Visual-quality evaluation,True,PSNR and SSIM; interpreted as JPEG degradation measurements.,COMPLETE
+Statistical analysis and figures,True,"McNemar/Holm, bootstrap intervals, confidence intervals and figures.",COMPLETE
+Checkpoint metadata audit,True,Checkpoint epoch and validation accuracy recorded.,COMPLETE
+Reproducibility disclosure audit,True,Training details not verified are disclosed.,COMPLETE
+Exact model revisions and licences,False,Verify AnimeGANv2 and Stable Diffusion checkpoint/revision and licence.,VERIFY BEFORE SUBMISSION
+OpenCV and JPEG implementation details,False,"Verify the actual method, parameters and JPEG encoder settings.",VERIFY BEFORE SUBMISSION
+Dataset attribution and terms,False,"Verify Imagenette source, attribution and applicable terms.",VERIFY BEFORE SUBMISSION
+Training provenance,False,"Training split, optimizer, schedule and historical software versions remain unverified.",VERIFY BEFORE SUBMISSION
+Citation accuracy and novelty,False,Manually verify each citation and conduct a literature review.,VERIFY BEFORE SUBMISSION

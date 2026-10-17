@@ -1,0 +1,24 @@
+STATISTICAL RESULTS — MANUSCRIPT INSERTION NOTE
+
+A total of 62 paired McNemar tests were evaluated, with Holm correction
+applied across the declared family of tests. Thirty tests compared
+cartoonized images against original images; all 30 were significant
+after correction. Thirty-two tests compared JPEG-compressed images with
+the corresponding uncompressed condition; eight were significant after
+correction.
+
+The negative values in the source field
+'accuracy_difference_cartoon_minus_original' indicate lower accuracy
+for the cartoonized condition than for the original condition.
+
+Interpret compression results separately from cartoonization effects.
+Do not claim that every JPEG quality setting significantly reduced
+recognition accuracy. Report exact comparisons, effect directions,
+adjusted p-values, and the tested classifier configuration.
+
+The two evaluated classifiers are standard ResNet18 and JPEG-augmented
+ResNet18; they are not different network architectures.
+
+PSNR and SSIM in this study quantify JPEG distortion relative to each
+condition's own pre-compression image. They are not direct measures of
+cartoonization fidelity to the original photograph.

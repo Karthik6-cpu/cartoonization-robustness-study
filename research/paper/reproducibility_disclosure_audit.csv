@@ -1,0 +1,6 @@
+item,passed,detail
+Training details limitation disclosed,True,The manuscript should disclose unavailable training settings.
+Checkpoint metadata available,True,"Checkpoint files, epoch, and validation accuracy were inspected."
+Optimizer documented or disclosed as unknown,True,Do not infer optimizer details from checkpoint metadata.
+Learning-rate schedule documented or disclosed as unknown,True,The checkpoint does not establish the learning-rate schedule.
+Historical software versions not confused with current versions,True,Current Kaggle versions are not proof of training-time versions.

@@ -1,0 +1,12 @@
+item,status,action,source
+Imagenette dataset,Existing reference,Verify dataset description and cite it where the dataset is introduced.,https://github.com/fastai/imagenette
+AnimeGANv2,Needs verification,"Identify the exact repository, checkpoint, revision, and licence used.",Do not select a source until the actual implementation is confirmed.
+OpenCV cartoonization,Needs verification,"Record the exact algorithm, parameters, and OpenCV version.",Use documentation matching the actual implementation.
+Stable Diffusion 1.5,Needs verification,"Confirm checkpoint revision, scheduler, repository, and licence.",https://huggingface.co/stable-diffusion-v1-5/stable-diffusion-v1-5
+ResNet18,Needs citation,Add the original ResNet paper and document the implementation used.,https://arxiv.org/abs/1512.03385
+PSNR and SSIM,Needs citations,Cite the sources defining the image-quality metrics and explain their scope.,Verify the original metric papers before submission.
+JPEG compression,Needs verification,Record the encoder/library and settings used for JPEG quality levels.,Cite documentation matching the actual encoder.
+Holm correction,Existing reference,Add an in-text citation where multiple-testing correction is described.,https://www.jstor.org/stable/4615733
+Paired bootstrap and McNemar tests,Needs citations,Verify and cite appropriate methodological sources.,Match citations to the procedures actually implemented.
+In-text citations,Needs review,Check that every bibliography entry is cited and every citation has a matching reference.,Current manuscript
+Reproducibility and licences,Needs verification,"Record software versions, model identifiers, training settings, and licences from experiment records.","Original notebooks, environment, and model repositories"

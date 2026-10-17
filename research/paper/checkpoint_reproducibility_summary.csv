@@ -1,0 +1,3 @@
+checkpoint,classifier,checkpoint_epoch,best_validation_accuracy,class_mapping_recorded,optimizer_verified,learning_rate_schedule_verified,training_split_verified,software_versions_at_training_verified
+resnet18_jpeg_augmented_best.pt,JPEG-augmented ResNet18,4,0.8881069669247009,True,False,False,False,False
+resnet18_standard_best.pt,Standard ResNet18,4,0.8655876143560872,True,False,False,False,False

@@ -1,0 +1,3 @@
+test_family,number_of_tests,significant_tests,not_significant_tests
+cartoon_vs_original,30,30,0
+jpeg_vs_uncompressed,32,8,24

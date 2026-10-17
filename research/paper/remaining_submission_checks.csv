@@ -1,0 +1,7 @@
+item,required_check
+AnimeGANv2,Confirm that this repository and its checkpoint match the implementation actually used.
+Stable Diffusion,"Confirm the exact model revision, scheduler, and licence from the experiment records."
+OpenCV cartoonization,Confirm the actual algorithm and parameters; the general OpenCV reference alone is insufficient.
+JPEG encoding,Confirm the actual encoder/library and settings used for the quality levels.
+Training reproducibility,"Verify the training split, optimizer, learning-rate schedule, augmentation, checkpoint selection, and original software versions."
+In-text citation audit,Review every inserted citation against its paragraph and remove any citation that does not support the specific claim.

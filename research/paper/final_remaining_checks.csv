@@ -1,0 +1,7 @@
+Priority,Remaining task
+High,"Verify exact AnimeGANv2 checkpoint, revision, and licence"
+High,"Verify Stable Diffusion revision, scheduler, and licence"
+High,Verify actual OpenCV method and JPEG encoder
+High,Verify original training settings or disclose unavailable details
+High,Manually check that every citation supports its specific claim
+Medium,Apply the chosen journal's formatting requirements

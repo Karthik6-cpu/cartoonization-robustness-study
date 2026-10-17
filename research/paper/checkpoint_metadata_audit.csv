@@ -1,0 +1,3 @@
+file,size_mb,epoch,best_val_acc,metadata_keys
+/kaggle/input/datasets/karthikeyach6/cartoonization-model-checkpoints/resnet18_jpeg_augmented_best.pt,42.73,4,0.8881069669247009,"model, epoch, best_val_acc, class_to_idx"
+/kaggle/input/datasets/karthikeyach6/cartoonization-model-checkpoints/resnet18_standard_best.pt,42.73,4,0.8655876143560872,"model, epoch, best_val_acc, class_to_idx"
