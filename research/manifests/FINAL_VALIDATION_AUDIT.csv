@@ -1,0 +1,34 @@
+status,check,details
+PASS,Manifest row count,"3,925 rows"
+PASS,Manifest IDs unique,"3,925 unique source IDs"
+PASS,All four image conditions present,"3,925/3,925 marked true"
+PASS,standard: expected row count,"78,500 rows; expected 78,500"
+PASS,standard: no duplicate prediction keys,0 duplicate keys
+PASS,standard: expected conditions,"['animegan2', 'opencv', 'original', 'stable_diffusion']"
+PASS,standard: expected JPEG qualities,"['25', '50', '75', '95', 'uncompressed']"
+PASS,standard: no missing values,0 missing cells
+PASS,standard: correct flag is binary,correct column
+PASS,standard: confidence range,"min=0.1465, max=1.0000"
+PASS,jpeg_augmented: expected row count,"78,500 rows; expected 78,500"
+PASS,jpeg_augmented: no duplicate prediction keys,0 duplicate keys
+PASS,jpeg_augmented: expected conditions,"['animegan2', 'opencv', 'original', 'stable_diffusion']"
+PASS,jpeg_augmented: expected JPEG qualities,"['25', '50', '75', '95', 'uncompressed']"
+PASS,jpeg_augmented: no missing values,0 missing cells
+PASS,jpeg_augmented: correct flag is binary,correct column
+PASS,jpeg_augmented: confidence range,"min=0.1552, max=1.0000"
+PASS,Combined prediction total,"157,000 rows across two classifiers"
+PASS,Recognition summary row count,40 rows; expected 40
+PASS,Recognition metric range: top1_accuracy,range 0.4894 to 0.8859
+PASS,Recognition metric range: macro_f1,range 0.4528 to 0.8858
+PASS,Recognition metric range: balanced_accuracy,range 0.4841 to 0.8853
+PASS,Recognition metric range: mean_confidence,range 0.7111 to 0.8917
+PASS,Summary matches prediction groups,40/40 groups matched
+PASS,Summary top-1 accuracy matches raw predictions,maximum absolute difference=0
+PASS,Visual quality row count,"62,800 rows; expected 62,800"
+PASS,Visual quality conditions,"['animegan2', 'opencv', 'original', 'stable_diffusion']"
+PASS,Statistical table: accuracy_wilson_summary.csv,40 rows; 8 columns
+PASS,Statistical table: paired_mcnemar_holm_results.csv,62 rows; 11 columns
+PASS,Statistical table: paired_bootstrap_accuracy_ci.csv,30 rows; 11 columns
+PASS,Statistical table: prediction_flip_summary.csv,32 rows; 8 columns
+PASS,Statistical table: per_class_metrics.csv,400 rows; 8 columns
+PASS,Statistical table: class_adjusted_descriptor_logistic.csv,24 rows; 11 columns
