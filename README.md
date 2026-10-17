@@ -37,12 +37,12 @@ Uncompressed, Q95, Q75, Q50, and Q25.
 
 ## Start here
 
-- [Final results report](FINAL_RESULTS_SUMMARY.md)
+- [Final results report](research/FINAL_RESULTS_SUMMARY.md)
 - [Research figures](research/figures/)
 - [All recognition results](research/paper/tables/final_recognition_results_all_conditions.csv)
 - [Final visual-quality table](research/paper/tables/final_visual_quality_results.csv)
 - [Final headline table](research/paper/tables/final_headline_results.csv)
-- [Validation audit](research/FINAL_VALIDATION_AUDIT.csv)
+- [Validation audit](research/manifests/FINAL_VALIDATION_AUDIT.csv)
 - [Paper package](release/cartoonization_paper_package.zip)
 - [Critical backup](release/cartoonization_critical_backup.zip)
 
