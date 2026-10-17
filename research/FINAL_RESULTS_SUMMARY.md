@@ -14,7 +14,7 @@ This report consolidates the existing results for a matched evaluation of image 
 
 ## Recognition results
 
-The following table shows Top-1 accuracy for uncompressed images and JPEG quality 25. Refer to `paper/tables/final_recognition_results_all_conditions.csv` for all 40 classifier-condition-quality combinations.
+The following table shows Top-1 accuracy for uncompressed images and JPEG quality 25. Refer to `research/paper/tables/final_recognition_results_all_conditions.csv` for all 40 classifier-condition-quality combinations.
 
 | Classifier | Image condition | JPEG quality | N | Top-1 accuracy | Macro-F1 | Balanced accuracy |
 |---|---|---:|---:|---:|---:|---:|
@@ -39,7 +39,7 @@ The following table shows Top-1 accuracy for uncompressed images and JPEG qualit
 
 PSNR and SSIM measure distortion introduced by JPEG compression relative to the corresponding decoded JPEG image, not fidelity of a cartoonized image to the original photograph. Infinite PSNR values for identical images are reported separately where applicable. PNG-versus-JPEG file sizes should not be treated as a like-for-like compression comparison.
 
-Full per-condition visual-quality summaries are in `metrics/visual_quality_all_four_summary.csv` and the consolidated table is `paper/tables/final_visual_quality_results.csv`.
+Full per-condition visual-quality summaries are in `research/metrics/visual_quality_all_four_summary.csv` and the consolidated table is `research/paper/tables/final_visual_quality_results.csv`.
 
 ## Statistical analyses
 
@@ -70,14 +70,14 @@ The recorded artifact audit contains 33 checks: 33 passed and 0 marked for revie
 
 ## Key artifacts
 
-- `metrics/full_recognition_summary.csv`
-- `metrics/visual_quality_all_four_summary.csv`
-- `metrics/accuracy_wilson_summary.csv`
-- `metrics/paired_mcnemar_holm_results.csv`
-- `metrics/paired_bootstrap_accuracy_ci.csv`
-- `metrics/prediction_flip_summary.csv`
-- `metrics/per_class_metrics.csv`
-- `metrics/class_adjusted_descriptor_logistic.csv`
-- `FINAL_VALIDATION_AUDIT.csv`
+- `research/metrics/full_recognition_summary.csv`
+- `research/metrics/visual_quality_all_four_summary.csv`
+- `research/metrics/accuracy_wilson_summary.csv`
+- `research/metrics/paired_mcnemar_holm_results.csv`
+- `research/metrics/paired_bootstrap_accuracy_ci.csv`
+- `research/metrics/prediction_flip_summary.csv`
+- `research/metrics/per_class_metrics.csv`
+- `research/metrics/class_adjusted_descriptor_logistic.csv`
+- `research/manifests/FINAL_VALIDATION_AUDIT.csv`
 
 Report generated from saved experiment outputs on 2026-10-17 07:29 UTC.
