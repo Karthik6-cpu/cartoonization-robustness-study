@@ -1,0 +1,49 @@
+{
+    "architecture": "BICR-Net",
+    "dataset": "Imagenette",
+    "backbone": "ResNet-18",
+    "pretrained": false,
+    "seed": 42,
+    "epochs_requested": 6,
+    "best_validation_accuracy": 74.24349049964813,
+    "trainable_parameters": 11726353,
+    "factors": [
+        "noise",
+        "blur",
+        "brightness"
+    ],
+    "training_combinations": [
+        [],
+        [
+            "noise"
+        ],
+        [
+            "blur"
+        ],
+        [
+            "brightness"
+        ],
+        [
+            "noise",
+            "brightness"
+        ],
+        [
+            "noise",
+            "blur"
+        ]
+    ],
+    "held_out_pair": [
+        "blur",
+        "brightness"
+    ],
+    "held_out_triple": [
+        "noise",
+        "blur",
+        "brightness"
+    ],
+    "evaluation_split": "validation",
+    "factor_loss_weight": 0.25,
+    "severity_loss_weight": 0.1,
+    "optimizer": "AdamW",
+    "learning_rate": 0.0003
+}

@@ -1,0 +1,9 @@
+condition,mean_accuracy,std_accuracy
+blur,68.773,2.113
+brightness,69.826,0.915
+clean,69.826,1.189
+noise,68.739,1.034
+noise_blur,67.83,2.447
+noise_brightness,68.943,0.651
+unseen_blur_brightness,67.38,1.284
+unseen_triple,66.471,1.746

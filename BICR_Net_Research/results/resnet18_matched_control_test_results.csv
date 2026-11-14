@@ -1,0 +1,9 @@
+condition,corruption_combination,correct,total,accuracy_percent
+clean,(),2692,3925,68.5859872611465
+noise,"('noise',)",2656,3925,67.6687898089172
+blur,"('blur',)",2609,3925,66.47133757961784
+brightness,"('brightness',)",2702,3925,68.8407643312102
+noise_brightness,"('noise', 'brightness')",2684,3925,68.38216560509554
+noise_blur,"('noise', 'blur')",2561,3925,65.2484076433121
+unseen_blur_brightness,"('blur', 'brightness')",2591,3925,66.01273885350318
+unseen_triple,"('noise', 'blur', 'brightness')",2539,3925,64.68789808917198

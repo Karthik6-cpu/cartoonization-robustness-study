@@ -1,0 +1,9 @@
+model,condition,accuracy,split
+BICR-Net,clean,74.24349049964813,validation
+BICR-Net,noise,72.9064039408867,validation
+BICR-Net,blur,72.69528501055595,validation
+BICR-Net,brightness,71.14707952146375,validation
+BICR-Net,noise_brightness_seen,70.30260380014074,validation
+BICR-Net,noise_blur_seen,72.1323011963406,validation
+BICR-Net,blur_brightness_unseen,69.38775510204081,validation
+BICR-Net,three_factor_unseen,69.03589021815623,validation

@@ -1,0 +1,7 @@
+{
+    "python": "3.13.16",
+    "pytorch": "2.11.0+cu130",
+    "cuda_available": true,
+    "gpu": "Tesla T4",
+    "timestamp": "2026-11-14 19:05:46"
+}
