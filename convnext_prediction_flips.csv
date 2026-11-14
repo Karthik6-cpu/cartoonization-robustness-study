@@ -1,0 +1,7 @@
+Condition,Changed Predictions,Prediction Flip Rate
+original,0,0.0
+opencv,774,0.1972
+jpeg_95,2,0.0005
+jpeg_75,1,0.0003
+jpeg_50,8,0.002
+jpeg_25,19,0.0048
