@@ -299,3 +299,15 @@ CAFR-Net v2 has higher accuracy in this matched experiment but uses approximatel
 - [Protocol and interpretation notes](research/CAFRNet_v2/results/matched_resnet18_seed314/README.md)
 
 **Scope limitation:** the matched ResNet-18 comparison currently uses one seed (314). Oxford-IIIT Pet results remain a single-seed CAFR-Net evaluation; no matched ResNet-18 Oxford-IIIT Pet comparison is claimed here.
+
+## CAFR-Net v2 — Final Colab artifact release
+
+The large seed-314 model checkpoints and complete Colab experiment archives are published as downloadable assets in the [CAFR-Net v2 final Colab artifact release](https://github.com/Karthik6-cpu/cartoonization-robustness-study/releases/tag/cafrnet-v2-colab-artifacts-2026-11-24).
+
+The release includes:
+- Original and corrected CAFR-Net seed-314 experiment archives.
+- Best and latest checkpoints for the original CAFR-Net run.
+- Best and latest checkpoints for the edge-corrected CAFR-Net run.
+- Latest matched ResNet-18 seed-314 checkpoint.
+
+The dated Colab-session backup, notebook, predictions, histories, metadata, statistical outputs and plots are stored under [research/CAFRNet_v2/colab_session_backup](research/CAFRNet_v2/colab_session_backup). Check the release description and asset filenames when downloading; checkpoint variants must not be mixed.
