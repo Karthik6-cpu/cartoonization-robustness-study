@@ -109,7 +109,78 @@ BICR-Net is a prototype, not a validated solution to general real-world distribu
 
 ---
 
-## 3. Quick research extension: matched compound-corruption pilot
+
+## 3. Phase IV: CAFR-Net v2 — Cartoon-Aware Feature Refinement Network
+
+CAFR-Net v2 investigates feature refinement for image classification under
+cartoonization-induced domain shifts.
+
+### Research objectives
+
+- Improve semantic feature representations across visual domains.
+- Investigate the contribution of edge information to cartoonized image recognition.
+- Evaluate multi-scale semantic feature fusion.
+- Study channel-spatial attention for feature refinement.
+- Examine generalization on an external image dataset.
+
+### Architecture
+
+1. **ConvNeXt-Tiny backbone:** extracts hierarchical visual representations.
+2. **Multi-scale feature projections:** align features from different backbone stages.
+3. **Semantic scale fusion:** combines multi-scale semantic information.
+4. **Edge refinement:** incorporates Sobel-based edge information.
+5. **Channel-spatial attention:** refines informative channels and spatial regions.
+6. **Classification head:** generates final class predictions.
+
+### Experimental evaluation
+
+**Imagenette**
+
+- 10-class image classification benchmark.
+- 13,394 verified images.
+- Training: 8,048 images.
+- Validation: 1,421 images.
+- Testing: 3,925 images.
+- Three independent seeds: 42, 123 and 2026.
+- Evaluation domains: Original, OpenCV, AnimeGANv2 and Stable Diffusion.
+- Ablations: without edge refinement, semantic fusion and attention.
+
+**Oxford-IIIT Pet**
+
+- 37-class external dataset.
+- Single-seed evaluation using seed 42.
+- Original and OpenCV-cartoonized test images.
+
+### Three-seed Imagenette results
+
+| Evaluation domain | Mean accuracy |
+|---|---:|
+| Original | 99.771% |
+| OpenCV | 90.403% |
+| AnimeGANv2 | 98.735% |
+| Stable Diffusion | 94.726% |
+
+These results describe the evaluated Imagenette experiments. They should not
+be interpreted as evidence of universal robustness. OpenCV performance also
+shows seed sensitivity.
+
+### Research package
+
+- [CAFR-Net v2 documentation](research/CAFRNet_v2/README.md)
+- [Consolidated results](research/CAFRNet_v2/RESULTS_SUMMARY.md)
+- [Source code](research/CAFRNet_v2/source/)
+- [Experimental results](research/CAFRNet_v2/results/)
+- [Dataset manifests](research/CAFRNet_v2/manifests/)
+
+### Limitations
+
+- Oxford-IIIT Pet evaluation uses a single seed.
+- Component ablations use single-seed experiments.
+- Results on Imagenette and Oxford-IIIT Pet must be reported separately.
+- Further independent-dataset experiments are needed before making broader
+  generalization claims.
+
+## 4. Quick research extension: matched compound-corruption pilot
 
 A deterministic image-generation utility and protocol have been added under [research_extension](research_extension/README.md).
 
@@ -128,7 +199,7 @@ Use only an already-held-out test split. Do not generate variants before splitti
 
 ---
 
-## 4. Research journal structure
+## 5. Research journal structure
 
 The integrated research journal consolidates the experimental record and includes:
 
@@ -145,7 +216,7 @@ The journal distinguishes measured results from conceptual proposals and flags u
 
 ---
 
-## 5. Reproducibility and publication checklist
+## 6. Reproducibility and publication checklist
 
 Before submitting a paper or claiming generalization:
 
@@ -159,7 +230,7 @@ Before submitting a paper or claiming generalization:
 8. Report confidence intervals, per-class metrics and paired source-level tests.
 9. Verify bibliographic metadata, licenses, dataset attribution and exact pretrained model citations.
 
-## 6. Scope and claim discipline
+## 7. Scope and claim discipline
 
 - Phase I is a matched evaluation of appearance transformations and JPEG compression; it is not a new cartoonization generator.
 - Phase III is a separate synthetic compositional-corruption prototype; it is not a direct continuation of the Phase I benchmark.
