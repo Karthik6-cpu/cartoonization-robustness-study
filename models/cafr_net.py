@@ -9,7 +9,7 @@ This is a proposed architecture, not a validated performance claim.
 """
 from __future__ import annotations
 
-from typing import Dict, Optional, Union
+from typing import Dict
 
 import torch
 from torch import Tensor, nn
@@ -73,8 +73,7 @@ class CAFRNet(nn.Module):
     ) -> None:
         super().__init__()
         weights = ConvNeXt_Tiny_Weights.DEFAULT if pretrained else None
-        self.backbone = convnext_tiny(weights=weights)
-        self.encoder = self.backbone.features
+        self.encoder = convnext_tiny(weights=weights).features
         self.feature_channels = (192, 384, 768)
         self.projections = nn.ModuleList([
             nn.Sequential(
