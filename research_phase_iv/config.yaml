@@ -1,11 +1,12 @@
 # Initial CAFR-Net experiment configuration.
-# These are starting settings; tune only on validation data.
+# Split-manifest path intentionally left unresolved until the actual source-ID
+# manifest (not the validation audit CSV) is located and verified.
 seed: 42
 dataset:
   name: imagenette
   num_classes: 10
   image_size: 224
-  split_manifest: research/manifests/FINAL_VALIDATION_AUDIT.csv
+  split_manifest: VERIFY_ACTUAL_SOURCE_IDENTITY_SPLIT_MANIFEST
 model:
   name: cafr_net
   backbone: convnext_tiny
