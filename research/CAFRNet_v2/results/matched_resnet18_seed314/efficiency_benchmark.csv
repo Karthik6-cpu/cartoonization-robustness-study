@@ -1,0 +1,3 @@
+model,device,input_resolution,warmup_iterations,measured_iterations,parameters_m,batch1_latency_ms,batch32_latency_ms,batch1_incremental_peak_memory_mb,batch32_incremental_peak_memory_mb
+CAFR-Net v2,NVIDIA Tesla T4,224x224,20,100,30.281,15.975,154.168,11.484,369.5
+ResNet18,NVIDIA Tesla T4,224x224,20,100,11.182,3.609,33.494,26.479,196.0
