@@ -82,3 +82,16 @@ The no-edge, no-semantic-fusion and no-attention ablations were evaluated using 
 - Report Oxford-IIIT Pet separately and disclose its single-seed protocol.
 
 See [the consolidated results summary](RESULTS_SUMMARY.md) and [matched comparison protocol](results/matched_resnet18_seed314/README.md).
+
+## Final Colab artifacts and checkpoints
+
+Large model files are distributed through the [CAFR-Net v2 final Colab artifact release](https://github.com/Karthik6-cpu/cartoonization-robustness-study/releases/tag/cafrnet-v2-colab-artifacts-2026-11-24) rather than committed as ordinary Git blobs.
+
+Release contents include:
+- Original seed-314 CAFR-Net artifact archive and best/latest checkpoints.
+- Edge-corrected seed-314 CAFR-Net artifact archive and best/latest checkpoints.
+- Matched ResNet-18 seed-314 latest checkpoint.
+
+The dated runtime backup contains the notebook, predictions, run histories, metadata, result tables, figures and ZIP packages: [colab_session_backup](colab_session_backup/20261124_161028/).
+
+The checkpoint names explicitly distinguish original versus edge-corrected CAFR-Net. Use the matching archive and checkpoint together when reproducing a run.
