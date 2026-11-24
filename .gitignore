@@ -7,3 +7,15 @@ venv/
 
 # Local research dataset - do not upload to GitHub
 results/imagenette2-320/
+
+# Research upload exclusions
+.env
+*.token
+*secret*
+__pycache__/
+.ipynb_checkpoints/
+.cache/
+datasets/
+*.pt
+*.pth
+*.ckpt
