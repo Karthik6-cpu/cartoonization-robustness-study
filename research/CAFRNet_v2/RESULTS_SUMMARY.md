@@ -115,3 +115,9 @@ The no-edge, no-semantic-fusion and no-attention ablations were run with seed 42
 - `manifests/` — dataset split and run metadata.
 
 The matched-baseline prediction CSVs and the full Colab-generated result archive must be copied from the Colab runtime into this repository to complete the raw-artifact upload.
+
+## 6. Final Colab artifacts and checkpoints
+
+The large seed-314 checkpoints and complete CAFR-Net Colab experiment archives are available in the [final Colab artifact release](https://github.com/Karthik6-cpu/cartoonization-robustness-study/releases/tag/cafrnet-v2-colab-artifacts-2026-11-24). The release contains original and edge-corrected CAFR-Net archives and best/latest checkpoints, plus the matched ResNet-18 latest checkpoint.
+
+The dated [Colab session backup](colab_session_backup/20261124_161028/) contains the notebook copy, prediction files, run histories, metadata, statistical tables, plots and packaged research outputs. The seven large release assets were uploaded separately to avoid storing large binary checkpoints in ordinary Git history.
