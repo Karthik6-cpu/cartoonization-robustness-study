@@ -15,6 +15,7 @@ from pathlib import Path
 from datetime import datetime, timezone
 
 import numpy as np
+import cv2
 import torch
 from PIL import Image, ImageEnhance, ImageFilter
 from torch import nn
@@ -37,18 +38,53 @@ def sha256_file(path):
         for chunk in iter(lambda:f.read(1024*1024),b""): h.update(chunk)
     return h.hexdigest()
 
+
 def shifted_view(image):
-    kind=random.choice(("jpeg","blur","brightness","noise","identity"))
-    if kind=="blur": return image.filter(ImageFilter.GaussianBlur(random.uniform(.3,1.2)))
-    if kind=="brightness": return ImageEnhance.Brightness(image).enhance(random.uniform(.75,1.25))
-    if kind=="jpeg":
-        b=io.BytesIO(); image.save(b,format="JPEG",quality=random.choice((35,50,65,80)))
-        b.seek(0); return Image.open(b).convert("RGB")
-    if kind=="noise":
-        arr=np.asarray(image).astype(np.float32)
-        arr+=np.random.normal(0,random.uniform(3,12),arr.shape)
-        return Image.fromarray(np.uint8(np.clip(arr,0,255)))
+    kind = random.choices(
+        ("opencv_cartoon", "jpeg", "blur", "brightness", "noise", "identity"),
+        weights=(0.35, 0.15, 0.15, 0.10, 0.10, 0.15),
+        k=1
+    )[0]
+
+    if kind == "opencv_cartoon":
+        arr = np.asarray(image.convert("RGB"))
+        bgr = cv2.cvtColor(arr, cv2.COLOR_RGB2BGR)
+        cartoon = cv2.stylization(
+            bgr, sigma_s=60, sigma_r=0.45
+        )
+        rgb = cv2.cvtColor(cartoon, cv2.COLOR_BGR2RGB)
+        return Image.fromarray(rgb)
+
+    if kind == "blur":
+        return image.filter(
+            ImageFilter.GaussianBlur(random.uniform(.3, 1.2))
+        )
+
+    if kind == "brightness":
+        return ImageEnhance.Brightness(image).enhance(
+            random.uniform(.75, 1.25)
+        )
+
+    if kind == "jpeg":
+        b = io.BytesIO()
+        image.save(
+            b, format="JPEG",
+            quality=random.choice((35, 50, 65, 80))
+        )
+        b.seek(0)
+        return Image.open(b).convert("RGB")
+
+    if kind == "noise":
+        arr = np.asarray(image).astype(np.float32)
+        arr += np.random.normal(
+            0, random.uniform(3, 12), arr.shape
+        )
+        return Image.fromarray(
+            np.uint8(np.clip(arr, 0, 255))
+        )
+
     return image.copy()
+
 
 class PairedImageFolder(Dataset):
     def __init__(self,root,image_size=224):
@@ -93,7 +129,18 @@ def main():
     p.add_argument("--lambda-consistency",type=float,default=.25)
     p.add_argument("--image-size",type=int,default=224)
     p.add_argument("--resume",action="store_true")
+    p.add_argument(
+        "--ablation",
+        choices=("full", "no_edge", "no_semantic_fusion", "no_attention"),
+        default="full"
+    )
     args=p.parse_args()
+
+    model_config = {
+        "use_edge": args.ablation != "no_edge",
+        "use_semantic_fusion": args.ablation != "no_semantic_fusion",
+        "use_attention": args.ablation != "no_attention",
+    }
     seed_everything(args.seed)
     device=torch.device("cuda" if torch.cuda.is_available() else "cpu")
     root=Path(args.data); out=Path(args.out); out.mkdir(parents=True,exist_ok=True)
@@ -110,7 +157,11 @@ def main():
     val_loader=DataLoader(val_ds,batch_size=args.batch_size,shuffle=False,
         num_workers=args.workers,pin_memory=device.type=="cuda",
         persistent_workers=args.workers>0)
-    model=CAFRNet(num_classes=len(train_ds.base.classes),pretrained=True).to(device)
+    model=CAFRNet(
+        num_classes=len(train_ds.base.classes),
+        pretrained=True,
+        **model_config
+    ).to(device)
     for q in model.encoder.parameters(): q.requires_grad=False
     optimizer=torch.optim.AdamW([
         {"params":model.encoder.parameters(),"lr":2e-5},
@@ -158,11 +209,13 @@ def main():
             if metrics["val_accuracy"]>best_acc:
                 best_acc=metrics["val_accuracy"]; stale=0
                 torch.save({"model":model.state_dict(),"classes":train_ds.base.classes,
-                    "seed":args.seed,"epoch":epoch+1,"val_accuracy":best_acc,"args":vars(args)},best_path)
+                    "seed":args.seed,"epoch":epoch+1,"val_accuracy":best_acc,
+                    "args":vars(args),"model_config":model_config},best_path)
             else: stale+=1
             torch.save({"model":model.state_dict(),"optimizer":optimizer.state_dict(),
                 "scheduler":scheduler.state_dict(),"epoch":epoch+1,"best_accuracy":best_acc,
-                "history":history,"classes":train_ds.base.classes,"args":vars(args)},latest_path)
+                "history":history,"classes":train_ds.base.classes,
+                "args":vars(args),"model_config":model_config},latest_path)
             make_zip(out,out.parent/(out.name+"_artifacts.zip"))
             if stale>=5: print("Early stopping."); break
     finally:

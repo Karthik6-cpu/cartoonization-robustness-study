@@ -1,192 +1,310 @@
-"""CAFR-Net: Cartoon-Aware Feature Refinement Network.
-
-Research prototype for semantic classification under cartoonization and
-compression shifts. The model combines a pretrained ConvNeXt-Tiny encoder,
-multi-scale semantic features, an explicit edge-structure stream, and
-frequency-conditioned residual fusion.
-
-This is a proposed architecture, not a validated performance claim.
-"""
-from __future__ import annotations
-
-from typing import Dict
 
 import torch
-from torch import Tensor, nn
+import torch.nn as nn
 import torch.nn.functional as F
-from torchvision.models import ConvNeXt_Tiny_Weights, convnext_tiny
+
+from torchvision.models import (
+    convnext_tiny,
+    ConvNeXt_Tiny_Weights,
+)
 
 
-class EdgeStructureBranch(nn.Module):
-    """Extracts progressively downsampled edge/contour representations."""
-
-    def __init__(self, out_channels: int = 256) -> None:
-        super().__init__()
-        channels = (3, 32, 64, 128, 192, out_channels)
-        layers = []
-        for i in range(len(channels) - 1):
-            layers.extend([
-                nn.Conv2d(channels[i], channels[i + 1], 3, stride=2,
-                          padding=1, bias=False),
-                nn.BatchNorm2d(channels[i + 1]),
-                nn.GELU(),
-            ])
-        self.encoder = nn.Sequential(*layers)
-        self.refine = nn.Sequential(
-            nn.Conv2d(out_channels, out_channels, 3, padding=1, bias=False),
+class ConvBNAct(nn.Sequential):
+    def __init__(self, in_channels, out_channels, kernel_size=1):
+        padding = kernel_size // 2
+        super().__init__(
+            nn.Conv2d(
+                in_channels, out_channels,
+                kernel_size, padding=padding, bias=False
+            ),
             nn.BatchNorm2d(out_channels),
-            nn.GELU(),
+            nn.GELU()
         )
+
+
+class ChannelSpatialAttention(nn.Module):
+    def __init__(self, channels, reduction=16):
+        super().__init__()
+
+        hidden = max(channels // reduction, 8)
+
+        self.channel_mlp = nn.Sequential(
+            nn.Conv2d(channels, hidden, 1),
+            nn.GELU(),
+            nn.Conv2d(hidden, channels, 1)
+        )
+
+        self.spatial = nn.Conv2d(
+            2, 1, kernel_size=7, padding=3
+        )
+
+    def forward(self, x):
+        avg = F.adaptive_avg_pool2d(x, 1)
+        mx = F.adaptive_max_pool2d(x, 1)
+
+        channel_attention = torch.sigmoid(
+            self.channel_mlp(avg) +
+            self.channel_mlp(mx)
+        )
+
+        x = x * channel_attention
+
+        avg_map = x.mean(dim=1, keepdim=True)
+        max_map = x.max(dim=1, keepdim=True)[0]
+
+        spatial_attention = torch.sigmoid(
+            self.spatial(torch.cat([avg_map, max_map], dim=1))
+        )
+
+        return x * spatial_attention
+
+
+class SemanticScaleFusion(nn.Module):
+    def __init__(self, channels):
+        super().__init__()
+
+        self.scale_scorer = nn.Sequential(
+            nn.Linear(channels * 3, channels),
+            nn.GELU(),
+            nn.Dropout(0.1),
+            nn.Linear(channels, 3)
+        )
+
+    def forward(self, features):
+        pooled = [
+            F.adaptive_avg_pool2d(f, 1).flatten(1)
+            for f in features
+        ]
+
+        descriptor = torch.cat(pooled, dim=1)
+        weights = torch.softmax(
+            self.scale_scorer(descriptor), dim=1
+        )
+
+        target_size = features[-1].shape[-2:]
+
+        aligned = [
+            f if f.shape[-2:] == target_size
+            else F.interpolate(
+                f, size=target_size,
+                mode="bilinear", align_corners=False
+            )
+            for f in features
+        ]
+
+        fused = sum(
+            aligned[i] * weights[:, i].view(-1, 1, 1, 1)
+            for i in range(3)
+        )
+
+        return fused, weights
+
+
+class EdgeRefinement(nn.Module):
+    def __init__(self, channels):
+        super().__init__()
+
         sobel_x = torch.tensor(
-            [[-1., 0., 1.], [-2., 0., 2.], [-1., 0., 1.]]
+            [[-1, 0, 1], [-2, 0, 2], [-1, 0, 1]],
+            dtype=torch.float32
         ).view(1, 1, 3, 3)
+
         sobel_y = torch.tensor(
-            [[-1., -2., -1.], [0., 0., 0.], [1., 2., 1.]]
+            [[-1, -2, -1], [0, 0, 0], [1, 2, 1]],
+            dtype=torch.float32
         ).view(1, 1, 3, 3)
+
         self.register_buffer("sobel_x", sobel_x)
         self.register_buffer("sobel_y", sobel_y)
 
-    def forward(self, x: Tensor) -> Tensor:
-        # Edge extraction uses RGB luminance; input is expected in [0, 1].
-        gray = (0.299 * x[:, 0:1] + 0.587 * x[:, 1:2] + 0.114 * x[:, 2:3])
+        self.edge_encoder = nn.Sequential(
+            ConvBNAct(1, channels, 3),
+            ConvBNAct(channels, channels, 3)
+        )
+
+        # Bounded residual contribution.
+        self.edge_strength = nn.Parameter(torch.tensor(-2.0))
+
+    def forward(self, image, features):
+        gray = (
+            0.299 * image[:, 0:1] +
+            0.587 * image[:, 1:2] +
+            0.114 * image[:, 2:3]
+        )
+
         gx = F.conv2d(gray, self.sobel_x, padding=1)
         gy = F.conv2d(gray, self.sobel_y, padding=1)
-        magnitude = torch.sqrt(gx.square() + gy.square() + 1e-6)
-        edge_rgb = magnitude.repeat(1, 3, 1, 1)
-        return self.refine(self.encoder(edge_rgb))
+
+        edge = torch.sqrt(gx.square() + gy.square() + 1e-6)
+
+        edge = F.interpolate(
+            edge,
+            size=features.shape[-2:],
+            mode="bilinear",
+            align_corners=False
+        )
+
+        edge_features = self.edge_encoder(edge)
+
+        strength = 0.25 * torch.sigmoid(self.edge_strength)
+
+        return features + strength * edge_features
 
 
-class CAFRNet(nn.Module):
-    """Cartoon-Aware Feature Refinement Network.
-
-    Args:
-        num_classes: Number of target classes.
-        pretrained: Load ImageNet-1K ConvNeXt-Tiny weights.
-        dropout: Dropout probability before the classifier.
-    """
-
+class CAFRNetV2(nn.Module):
     def __init__(
         self,
-        num_classes: int = 10,
-        pretrained: bool = True,
-        dropout: float = 0.25,
-    ) -> None:
+        num_classes=10,
+        pretrained=True,
+        dropout=0.25,
+        projection_dim=256,
+        use_edge=True,
+        use_semantic_fusion=True,
+        use_attention=True
+    ):
         super().__init__()
-        weights = ConvNeXt_Tiny_Weights.DEFAULT if pretrained else None
-        self.encoder = convnext_tiny(weights=weights).features
-        self.feature_channels = (192, 384, 768)
+
+        weights = (
+            ConvNeXt_Tiny_Weights.DEFAULT
+            if pretrained else None
+        )
+
+        backbone = convnext_tiny(weights=weights)
+        self.encoder = backbone.features
+
+        # ConvNeXt-Tiny feature stages:
+        # 3 -> 192 channels
+        # 5 -> 384 channels
+        # 7 -> 768 channels
+        self.stage_indices = (3, 5, 7)
+
         self.projections = nn.ModuleList([
-            nn.Sequential(
-                nn.Conv2d(ch, 256, kernel_size=1, bias=False),
-                nn.BatchNorm2d(256),
-                nn.GELU(),
-            )
-            for ch in self.feature_channels
+            ConvBNAct(192, projection_dim),
+            ConvBNAct(384, projection_dim),
+            ConvBNAct(768, projection_dim)
         ])
-        self.edge_branch = EdgeStructureBranch(out_channels=256)
-        self.frequency_gate = nn.Sequential(
-            nn.Linear(1, 32),
-            nn.GELU(),
-            nn.Linear(32, 4),
-        )
-        self.fusion_refine = nn.Sequential(
-            nn.Conv2d(256, 256, 3, padding=1, groups=1, bias=False),
-            nn.BatchNorm2d(256),
-            nn.GELU(),
-            nn.Conv2d(256, 256, 1, bias=False),
-            nn.BatchNorm2d(256),
-        )
-        self.norm = nn.LayerNorm(256)
-        self.dropout = nn.Dropout(dropout)
-        self.classifier = nn.Linear(256, num_classes)
-        self._initialize_new_layers()
 
-    def _initialize_new_layers(self) -> None:
-        for module in (self.projections, self.edge_branch, self.fusion_refine,
-                       self.frequency_gate, self.classifier):
-            for layer in module.modules():
-                if isinstance(layer, nn.Conv2d):
-                    nn.init.kaiming_normal_(layer.weight, mode="fan_out",
-                                            nonlinearity="relu")
-                elif isinstance(layer, nn.Linear):
-                    nn.init.trunc_normal_(layer.weight, std=0.02)
-                    if layer.bias is not None:
-                        nn.init.zeros_(layer.bias)
+        self.use_edge = use_edge
+        self.use_semantic_fusion = use_semantic_fusion
+        self.use_attention = use_attention
 
-    def _encode_multiscale(self, x: Tensor):
-        # torchvision ConvNeXt-Tiny feature indices:
-        # 1 -> 96 channels, 3 -> 192, 5 -> 384, 7 -> 768.
-        outputs: Dict[int, Tensor] = {}
-        z = x
+        self.fusion = SemanticScaleFusion(projection_dim)
+        self.edge_refinement = EdgeRefinement(projection_dim)
+        self.attention = ChannelSpatialAttention(projection_dim)
+
+        self.refinement = nn.Sequential(
+            ConvBNAct(projection_dim, projection_dim, 3),
+            nn.Dropout2d(0.1),
+            ConvBNAct(projection_dim, projection_dim, 3)
+        )
+
+        self.classifier = nn.Sequential(
+            nn.LayerNorm(projection_dim),
+            nn.Linear(projection_dim, 512),
+            nn.GELU(),
+            nn.Dropout(dropout),
+            nn.Linear(512, num_classes)
+        )
+
+        self.embedding_dim = projection_dim
+
+    def forward(self, x, return_features=False):
+        input_image = x
+
+        stage_features = []
         for index, layer in enumerate(self.encoder):
-            z = layer(z)
-            if index in (3, 5, 7):
-                outputs[index] = z
-        return outputs[3], outputs[5], outputs[7]
+            x = layer(x)
 
-    def forward(self, x: Tensor, return_features: bool = False):
-        # The edge branch consumes denormalized [0,1] RGB. The encoder consumes
-        # ImageNet-normalized RGB. The training/evaluation pipeline supplies
-        # normalized x; invert normalization for the edge stream.
-        mean = x.new_tensor((0.485, 0.456, 0.406)).view(1, 3, 1, 1)
-        std = x.new_tensor((0.229, 0.224, 0.225)).view(1, 3, 1, 1)
-        rgb = (x * std + mean).clamp(0.0, 1.0)
+            if index in self.stage_indices:
+                stage_features.append(x)
 
-        f2, f3, f4 = self._encode_multiscale(x)
-        target_size = f4.shape[-2:]
-        semantic = [
-            F.interpolate(project(feature), size=target_size,
-                          mode="bilinear", align_corners=False)
-            for project, feature in zip(self.projections, (f2, f3, f4))
+        projected = [
+            projection(feature)
+            for projection, feature
+            in zip(self.projections, stage_features)
         ]
-        edge = self.edge_branch(rgb)
-        edge = F.interpolate(edge, size=target_size, mode="bilinear",
-                             align_corners=False)
 
-        # A global gradient-energy descriptor controls the contribution of
-        # shallow/deep semantic and edge representations.
-        gray = (0.299 * rgb[:, 0:1] + 0.587 * rgb[:, 1:2]
-                + 0.114 * rgb[:, 2:3])
-        gx = F.conv2d(gray, self.edge_branch.sobel_x, padding=1)
-        gy = F.conv2d(gray, self.edge_branch.sobel_y, padding=1)
-        frequency_energy = torch.sqrt(gx.square() + gy.square() + 1e-6).mean(
-            dim=(2, 3)
-        )
-        gates = torch.softmax(self.frequency_gate(frequency_energy), dim=1)
-        streams = semantic + [edge]
-        fused = sum(stream * gates[:, i:i + 1, None, None]
-                    for i, stream in enumerate(streams))
-        fused = fused + self.fusion_refine(fused)
-        pooled = F.adaptive_avg_pool2d(fused, 1).flatten(1)
-        embedding = self.norm(pooled)
-        logits = self.classifier(self.dropout(embedding))
+        if self.use_semantic_fusion:
+            fused, scale_weights = self.fusion(projected)
+        else:
+            target_size = projected[-1].shape[-2:]
+            aligned = [
+                f if f.shape[-2:] == target_size else
+                F.interpolate(
+                    f, size=target_size,
+                    mode="bilinear", align_corners=False
+                )
+                for f in projected
+            ]
+            scale_weights = torch.full(
+                (x.shape[0], 3), 1.0 / 3.0,
+                device=x.device, dtype=x.dtype
+            )
+            fused = sum(aligned) / 3.0
+
+        if self.use_edge:
+            fused = self.edge_refinement(input_image, fused)
+
+        if self.use_attention:
+            attended = self.attention(fused)
+        else:
+            attended = fused
+
+        refined = attended + self.refinement(attended)
+
+        embedding = F.adaptive_avg_pool2d(
+            refined, 1
+        ).flatten(1)
+
+        logits = self.classifier(embedding)
 
         if return_features:
-            return {"logits": logits, "embedding": embedding,
-                    "gates": gates, "feature_map": fused}
+            return {
+                "logits": logits,
+                "embedding": embedding,
+                "gates": scale_weights,
+                "scale_weights": scale_weights
+            }
+
         return logits
 
 
 def paired_consistency_loss(
-    logits_a: Tensor,
-    logits_b: Tensor,
-    temperature: float = 2.0,
-) -> Tensor:
-    """Symmetric KL consistency for matched clean/corrupted training views."""
-    if temperature <= 0:
-        raise ValueError("temperature must be positive")
-    log_pa = F.log_softmax(logits_a / temperature, dim=1)
-    log_pb = F.log_softmax(logits_b / temperature, dim=1)
-    pa, pb = log_pa.exp(), log_pb.exp()
-    loss_ab = F.kl_div(log_pa, pb.detach(), reduction="batchmean")
-    loss_ba = F.kl_div(log_pb, pa.detach(), reduction="batchmean")
-    return 0.5 * (loss_ab + loss_ba) * (temperature ** 2)
+    logits_a,
+    logits_b,
+    temperature=2.0
+):
+    log_p = F.log_softmax(
+        logits_a / temperature, dim=1
+    )
+    log_q = F.log_softmax(
+        logits_b / temperature, dim=1
+    )
+
+    p = log_p.exp()
+    q = log_q.exp()
+
+    loss_ab = F.kl_div(
+        log_p, q, reduction="batchmean"
+    )
+
+    loss_ba = F.kl_div(
+        log_q, p, reduction="batchmean"
+    )
+
+    return (
+        0.5 * (loss_ab + loss_ba)
+        * temperature ** 2
+    )
 
 
-def build_model(
-    num_classes: int = 10,
-    pretrained: bool = True,
-    dropout: float = 0.25,
-) -> CAFRNet:
-    return CAFRNet(num_classes=num_classes, pretrained=pretrained,
-                   dropout=dropout)
+# Compatibility name for existing imports.
+CAFRNet = CAFRNetV2
+
+
+def build_model(num_classes=10, pretrained=True, dropout=0.25):
+    return CAFRNet(
+        num_classes=num_classes,
+        pretrained=pretrained,
+        dropout=dropout
+    )

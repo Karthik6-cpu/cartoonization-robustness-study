@@ -31,7 +31,12 @@ def main():
     device=torch.device("cuda" if torch.cuda.is_available() else "cpu")
     ckpt=torch.load(a.checkpoint,map_location="cpu",weights_only=False)
     classes=ckpt["classes"]
-    model=CAFRNet(num_classes=len(classes),pretrained=False)
+    model_config = ckpt.get("model_config", {})
+    model=CAFRNet(
+        num_classes=len(classes),
+        pretrained=False,
+        **model_config
+    )
     model.load_state_dict(ckpt["model"])
     model.to(device).eval()
     tf=transforms.Compose([transforms.Resize((224,224)),transforms.ToTensor(),

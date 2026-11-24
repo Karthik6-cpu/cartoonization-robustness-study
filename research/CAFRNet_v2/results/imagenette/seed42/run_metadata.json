@@ -1,0 +1,36 @@
+{
+  "created_utc": "2026-11-24T06:25:36.577369+00:00",
+  "seed": 42,
+  "device": "cuda",
+  "gpu": "Tesla T4",
+  "torch": "2.14.1+cu130",
+  "torchvision": "0.29.1+cu130",
+  "python": "3.13.16",
+  "classes": [
+    "n01440764",
+    "n02102040",
+    "n02979186",
+    "n03000684",
+    "n03028079",
+    "n03394916",
+    "n03417042",
+    "n03425413",
+    "n03445777",
+    "n03888257"
+  ],
+  "train_samples": 8048,
+  "validation_samples": 1421,
+  "train_root": "/content/cafr_data/train",
+  "validation_root": "/content/cafr_data/val",
+  "args": {
+    "data": "/content/cafr_data",
+    "out": "/content/cafr_runs/cafr_v2_opencv_seed42",
+    "epochs": 5,
+    "batch_size": 16,
+    "seed": 42,
+    "workers": 2,
+    "lambda_consistency": 0.25,
+    "image_size": 224,
+    "resume": false
+  }
+}

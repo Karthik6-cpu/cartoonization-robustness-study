@@ -1,0 +1,5 @@
+Variant,OpenCV_Accuracy_Percent
+Full CAFR-Net v2,95.159
+Without edge refinement,88.153
+Without semantic fusion,92.076
+Without attention,94.879
