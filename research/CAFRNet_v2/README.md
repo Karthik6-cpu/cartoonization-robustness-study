@@ -95,3 +95,10 @@ Release contents include:
 The dated runtime backup contains the notebook, predictions, run histories, metadata, result tables, figures and ZIP packages: [colab_session_backup](colab_session_backup/20261124_161028/).
 
 The checkpoint names explicitly distinguish original versus edge-corrected CAFR-Net. Use the matching archive and checkpoint together when reproducing a run.
+
+
+## Reviewer revision status
+
+The historical OpenCV discrepancy (90.403% three-seed mean versus 78.115% in a separate comparison CSV) is now documented as unresolved rather than silently reconciled. The comparison CSV also contains a ConvNeXt row (83.236%), but its protocol/checkpoint provenance is not yet sufficient to certify a controlled backbone baseline.
+
+The active Sobel implementation now denormalizes ImageNet inputs before edge extraction; the historical implementation is archived under `source/legacy/`. New matched training, evaluation and statistical-analysis scripts have been added. See [REVIEWER_REVISION_PROTOCOL.md](REVIEWER_REVISION_PROTOCOL.md). These scripts are not executed results; the new three-seed Imagenette, ablation and Oxford-IIIT Pet runs remain pending GPU execution.
