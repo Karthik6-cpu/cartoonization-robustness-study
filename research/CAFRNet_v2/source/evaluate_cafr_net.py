@@ -14,7 +14,7 @@ from torchvision import transforms
 from torchvision.datasets import ImageFolder
 from torch.utils.data import DataLoader
 
-from models.cafr_net import CAFRNet
+from cafr_net import CAFRNet
 
 MEAN=(0.485,0.456,0.406); STD=(0.229,0.224,0.225)
 
