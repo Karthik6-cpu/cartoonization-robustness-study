@@ -214,6 +214,8 @@ def main():
         (str(Path(p).relative_to(val_ds.root)),val_ds.classes[y])
         for p,y in val_ds.samples
     )
+    with open(out/"validation_split_manifest.csv","w",newline="",encoding="utf-8") as f:
+        w=csv.writer(f); w.writerow(["relative_path","class_name"]); w.writerows(val_rows)
     val_hash=hashlib.sha256("\n".join(f"{p}\t{y}" for p,y in val_rows).encode()).hexdigest()
     metadata={
         "created_utc":datetime.now(timezone.utc).isoformat(),
