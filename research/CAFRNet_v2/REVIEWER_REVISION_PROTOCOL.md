@@ -125,6 +125,22 @@ For each seed, train the three ablation variants using `--arch cafrnet_v2` and `
 ### Oxford-IIIT Pet
 Repeat the three-model, three-seed matrix with the Oxford train/validation folders and then evaluate on the exact same original and OpenCV test folders for all models.
 
+
+### One-command matrix launcher
+
+The repository also includes `source/run_reviewer_matrix.sh`. From Colab, after cloning the branch and mounting the datasets:
+
+```bash
+bash run_reviewer_matrix.sh imagenette /content/cafr_data /content/cafr_runs
+bash run_reviewer_matrix.sh oxford /content/oxford_pet_data /content/oxford_runs
+```
+
+The Imagenette mode runs 18 jobs (three main architectures plus three CAFR ablations, each across three seeds). Oxford mode runs the three main architectures across three seeds (nine jobs). If a Colab session is interrupted, rerun with `RESUME=1` to resume any job with a saved `latest_model.pt`:
+
+```bash
+RESUME=1 bash run_reviewer_matrix.sh imagenette /content/cafr_data /content/cafr_runs
+```
+
 ## 7. Analysis and reporting rules
 
 - Primary architecture question: does CAFR-Net v2 outperform *plain ConvNeXt-Tiny* under the same backbone, split, augmentation, objective, epoch budget and evaluation conditions?
