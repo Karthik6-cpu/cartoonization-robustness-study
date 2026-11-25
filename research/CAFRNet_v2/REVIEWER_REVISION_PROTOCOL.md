@@ -128,9 +128,10 @@ Repeat the three-model, three-seed matrix with the Oxford train/validation folde
 
 ### One-command matrix launcher
 
-The repository also includes `source/run_reviewer_matrix.sh`. From Colab, after cloning the branch and mounting the datasets:
+The repository also includes `source/run_reviewer_matrix.sh`. From Colab, after cloning the branch and mounting the datasets, change into the source directory and run:
 
 ```bash
+cd /content/cartoonization-robustness-study/research/CAFRNet_v2/source
 bash run_reviewer_matrix.sh imagenette /content/cafr_data /content/cafr_runs
 bash run_reviewer_matrix.sh oxford /content/oxford_pet_data /content/oxford_runs
 ```
