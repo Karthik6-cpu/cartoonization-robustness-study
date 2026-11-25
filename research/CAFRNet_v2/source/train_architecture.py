@@ -222,6 +222,8 @@ def main():
         "python":platform.python_version(),"torch":torch.__version__,
         "torchvision":torchvision.__version__,"classes":train_ds.base.classes,
         "train_samples":len(train_ds),"validation_samples":len(val_ds),
+        "parameter_count_total":sum(p.numel() for p in model.parameters()),
+        "parameter_count_trainable_at_start":sum(p.numel() for p in model.parameters() if p.requires_grad),
         "train_manifest_sha256":split_hash,"validation_manifest_sha256":val_hash,
         "training_protocol":{
             "epochs":args.epochs,"batch_size":args.batch_size,"image_size":args.image_size,
