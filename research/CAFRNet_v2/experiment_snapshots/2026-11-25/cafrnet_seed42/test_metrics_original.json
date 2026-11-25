@@ -1,0 +1,13 @@
+{
+  "architecture": "cafrnet_v2",
+  "seed": 42,
+  "checkpoint_epoch": 3,
+  "condition": "original",
+  "test_samples": 3925,
+  "accuracy": 0.9977070063694268,
+  "macro_f1": 0.9976881620279379,
+  "ece_15_bins": 0.0030057735048281526,
+  "checkpoint_sha256": "5293a10b6e86695d66858e460a1762de551ecf158d37f3cec91ed0d37e5ba8f9",
+  "model_source_sha256": "97327968f835feb056bea7a09ad509ea4fa396a1c575fab868c5f2c604ba6f00",
+  "test_manifest_sha256": "d4fd587a26e6a6a17b47d0c1a56c451696aaf7396bb0dfffc751a9f165824cb1"
+}

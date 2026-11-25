@@ -1,0 +1,27 @@
+[
+  {
+    "file": "cafrnet_seed42/best_model.pt",
+    "bytes": 121229248,
+    "sha256": "5293a10b6e86695d66858e460a1762de551ecf158d37f3cec91ed0d37e5ba8f9"
+  },
+  {
+    "file": "cafrnet_seed42/latest_model.pt",
+    "bytes": 363687819,
+    "sha256": "7ef853a15636fc2f3b4fe9d4f3bf874ec38e99bc1be4b86e947134d492c1ceb4"
+  },
+  {
+    "file": "cafrnet_seed42/latest_model_repaired.pt",
+    "bytes": 140984131,
+    "sha256": "d15ed71229af7e4cc2b6d1127245f1879aa96221791f9efad6a5c5caba944008"
+  },
+  {
+    "file": "cafrnet_v2_seed123/best_model.pt",
+    "bytes": 121229248,
+    "sha256": "a21a0eaeaf10431fceeb2f9c9019f4f269dc45f3cb45f418f6c8605d3ae80ac9"
+  },
+  {
+    "file": "cafrnet_v2_seed123/latest_model.pt",
+    "bytes": 140985417,
+    "sha256": "76f96a1dbed1d8c61f1debebaef78aa7225c2e5fde5c291b783e1a8ce77ab884"
+  }
+]

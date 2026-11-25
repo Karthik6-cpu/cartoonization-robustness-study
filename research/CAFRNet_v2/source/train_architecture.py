@@ -261,12 +261,12 @@ def main():
         best_acc=float(ck.get("best_accuracy",-1.0))
         history=ck.get("history",[])
         if "loader_generator_state" in ck:
-            generator.set_state(ck["loader_generator_state"])
+            generator.set_state(ck["loader_generator_state"].detach().cpu().to(dtype=__import__("torch").uint8))
         if "python_rng_state" in ck: random.setstate(ck["python_rng_state"])
         if "numpy_rng_state" in ck: np.random.set_state(ck["numpy_rng_state"])
-        if "torch_rng_state" in ck: torch.set_rng_state(ck["torch_rng_state"])
+        if "torch_rng_state" in ck: torch.set_rng_state(ck["torch_rng_state"].detach().cpu().to(dtype=__import__("torch").uint8))
         if torch.cuda.is_available() and ck.get("cuda_rng_state"):
-            torch.cuda.set_rng_state_all(ck["cuda_rng_state"])
+            torch.cuda.set_rng_state_all([s.detach().cpu().to(dtype=__import__("torch").uint8) for s in ck["cuda_rng_state"]])
         if start_epoch>=args.freeze_epochs:
             for p in encoder_params: p.requires_grad=True
         print(f"Resuming {args.arch} seed {args.seed} at epoch {start_epoch+1}",flush=True)
