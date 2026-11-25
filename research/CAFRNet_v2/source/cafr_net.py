@@ -126,10 +126,20 @@ class EdgeRefinement(nn.Module):
         self.edge_strength = nn.Parameter(torch.tensor(-2.0))
 
     def forward(self, image, features):
+        # The encoder input is ImageNet-normalized. Recover RGB in [0, 1]
+        # before applying luminance weights and fixed Sobel filters.
+        mean = image.new_tensor(
+            [0.485, 0.456, 0.406]
+        ).view(1, 3, 1, 1)
+        std = image.new_tensor(
+            [0.229, 0.224, 0.225]
+        ).view(1, 3, 1, 1)
+        rgb = (image * std + mean).clamp(0, 1)
+
         gray = (
-            0.299 * image[:, 0:1] +
-            0.587 * image[:, 1:2] +
-            0.114 * image[:, 2:3]
+            0.299 * rgb[:, 0:1] +
+            0.587 * rgb[:, 1:2] +
+            0.114 * rgb[:, 2:3]
         )
 
         gx = F.conv2d(gray, self.sobel_x, padding=1)
