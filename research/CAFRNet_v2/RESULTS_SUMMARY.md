@@ -121,3 +121,18 @@ The matched-baseline prediction CSVs and the full Colab-generated result archive
 The large seed-314 checkpoints and complete CAFR-Net Colab experiment archives are available in the [final Colab artifact release](https://github.com/Karthik6-cpu/cartoonization-robustness-study/releases/tag/cafrnet-v2-colab-artifacts-2026-11-24). The release contains original and edge-corrected CAFR-Net archives and best/latest checkpoints, plus the matched ResNet-18 latest checkpoint.
 
 The dated [Colab session backup](colab_session_backup/20261124_161028/) contains the notebook copy, prediction files, run histories, metadata, statistical tables, plots and packaged research outputs. The seven large release assets were uploaded separately to avoid storing large binary checkpoints in ordinary Git history.
+
+
+## 7. Reviewer revision audit — historical conflict and new controlled protocol
+
+A separate historical file, `results/imagenette/model_comparison_metrics.csv`, reports 78.115% CAFR accuracy and 83.236% ConvNeXt accuracy on its OpenCV row (n=3,925). This does not match the 90.403% mean in the earlier three-seed summary. The three-seed mean is reproducible from its seed-level rows (95.159%, 88.739%, 87.312%). The validation notebook explicitly flags the comparison CSV as unresolved pending run/checkpoint provenance. Do not merge these records or use the 78.115% / 83.236% row as a verified head-to-head until the original checkpoint, prediction file, split identity, preprocessing and training metadata are recovered.
+
+The active Sobel implementation was also corrected to denormalize ImageNet-normalized input before grayscale/Sobel computation. The pre-denormalization source is preserved under `source/legacy/`. Historical results trained with the old implementation remain distinct from future corrected-source results.
+
+New reproducibility infrastructure:
+- `source/train_architecture.py` — matched CAFR-Net v2, plain ConvNeXt-Tiny and ResNet-18 training harness.
+- `source/evaluate_architecture.py` — common evaluator exporting per-image matched predictions.
+- `source/analyze_architecture_comparison.py` — per-seed metrics, mean/SD, paired exact McNemar tests with Holm correction, and paired image bootstrap intervals.
+- `REVIEWER_REVISION_PROTOCOL.md` — full multi-seed Imagenette, ablation and Oxford-IIIT Pet protocol.
+
+These are code/protocol additions only. New GPU runs have not yet been executed; no new performance results should be claimed from them.
