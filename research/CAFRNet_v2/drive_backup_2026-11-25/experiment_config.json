@@ -1,0 +1,27 @@
+{
+  "dataset": "Imagenette 320",
+  "train_images": 8048,
+  "validation_images": 1421,
+  "test_images": 3925,
+  "classes": 10,
+  "architectures": [
+    "cafrnet_v2",
+    "convnext_tiny",
+    "resnet18"
+  ],
+  "seeds": [
+    42,
+    123,
+    2026
+  ],
+  "epochs": 20,
+  "batch_size": 16,
+  "workers": 2,
+  "image_size": 224,
+  "encoder_lr": 2e-05,
+  "head_lr": 0.0002,
+  "weight_decay": 0.05,
+  "freeze_epochs": 2,
+  "lambda_consistency": 0.25,
+  "started_at": "2026-11-25T02:55:07.845133"
+}
