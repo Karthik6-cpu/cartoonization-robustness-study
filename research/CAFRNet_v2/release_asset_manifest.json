@@ -1,0 +1,26 @@
+[
+  {
+    "run": "cafrnet_seed123",
+    "archive": "cafrnet_seed123.zip",
+    "size_MB": 462.84,
+    "sha256": "626e2de928075bb207a6ed81976183072e28e5a31e95cc631beb269ae2ae8fc7"
+  },
+  {
+    "run": "cafrnet_seed2026",
+    "archive": "cafrnet_seed2026.zip",
+    "size_MB": 462.84,
+    "sha256": "9a2d09766b2ff659edf0b3fffb9789e5635242ee626641e8418ef5ed782b193b"
+  },
+  {
+    "run": "cafrnet_seed42",
+    "archive": "cafrnet_seed42.zip",
+    "size_MB": 462.83,
+    "sha256": "835464977f0d92f2f4487ab84d873fa9b617754edb3bd103f2ab28288dae3abf"
+  },
+  {
+    "run": "convnext_tiny_seed42",
+    "archive": "convnext_tiny_seed42.zip",
+    "size_MB": 425.3,
+    "sha256": "6ba016e1d35c3ff8a89f189e5d17cd834438bb1e691465cc226a402b52f3ecd2"
+  }
+]
