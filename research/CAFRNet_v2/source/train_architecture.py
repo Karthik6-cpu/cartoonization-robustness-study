@@ -173,6 +173,7 @@ def main():
     ap.add_argument("--head-lr",type=float,default=2e-4)
     ap.add_argument("--weight-decay",type=float,default=.05)
     ap.add_argument("--freeze-epochs",type=int,default=2)
+    ap.add_argument("--resume",action="store_true",help="Resume from OUT/latest_model.pt")
     ap.add_argument("--ablation",choices=("full","no_edge","no_semantic_fusion","no_attention"),default="full")
     args=ap.parse_args()
 
@@ -244,7 +245,32 @@ def main():
     ce=nn.CrossEntropyLoss()
     best_acc=-1.0
     history=[]
-    for epoch in range(args.epochs):
+    start_epoch=0
+    latest_path=out/"latest_model.pt"
+    if args.resume:
+        if not latest_path.exists():
+            raise FileNotFoundError(f"No resumable checkpoint found: {latest_path}")
+        ck=torch.load(latest_path,map_location=device,weights_only=False)
+        if ck.get("architecture")!=args.arch or ck.get("seed")!=args.seed:
+            raise ValueError("Resume checkpoint architecture/seed does not match this run.")
+        model.load_state_dict(ck["model"])
+        optimizer.load_state_dict(ck["optimizer"])
+        scheduler.load_state_dict(ck["scheduler"])
+        scaler.load_state_dict(ck.get("scaler",{}))
+        start_epoch=int(ck["epoch"])
+        best_acc=float(ck.get("best_accuracy",-1.0))
+        history=ck.get("history",[])
+        if "loader_generator_state" in ck:
+            generator.set_state(ck["loader_generator_state"])
+        if "python_rng_state" in ck: random.setstate(ck["python_rng_state"])
+        if "numpy_rng_state" in ck: np.random.set_state(ck["numpy_rng_state"])
+        if "torch_rng_state" in ck: torch.set_rng_state(ck["torch_rng_state"])
+        if torch.cuda.is_available() and ck.get("cuda_rng_state"):
+            torch.cuda.set_rng_state_all(ck["cuda_rng_state"])
+        if start_epoch>=args.freeze_epochs:
+            for p in encoder_params: p.requires_grad=True
+        print(f"Resuming {args.arch} seed {args.seed} at epoch {start_epoch+1}",flush=True)
+    for epoch in range(start_epoch,args.epochs):
         if epoch==args.freeze_epochs:
             for p in encoder_params: p.requires_grad=True
         model.train()
@@ -294,8 +320,12 @@ def main():
             "model_config":model_config,"classes":train_ds.base.classes,
             "seed":args.seed,"epoch":epoch+1,"best_accuracy":best_acc,
             "optimizer":optimizer.state_dict(),"scheduler":scheduler.state_dict(),
-            "history":history,"metadata":metadata
-        },out/"latest_model.pt")
+            "scaler":scaler.state_dict(),"history":history,"metadata":metadata,
+            "loader_generator_state":generator.get_state(),
+            "python_rng_state":random.getstate(),"numpy_rng_state":np.random.get_state(),
+            "torch_rng_state":torch.get_rng_state(),
+            "cuda_rng_state":torch.cuda.get_rng_state_all() if torch.cuda.is_available() else None
+        },latest_path)
     (out/"history.json").write_text(json.dumps(history,indent=2))
     print("Best validation accuracy:",best_acc)
     print("Best checkpoint:",out/"best_model.pt")
