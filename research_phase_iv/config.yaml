@@ -1,0 +1,32 @@
+# Initial CAFR-Net experiment configuration.
+# Split-manifest path intentionally left unresolved until the actual source-ID
+# manifest (not the validation audit CSV) is located and verified.
+seed: 42
+dataset:
+  name: imagenette
+  num_classes: 10
+  image_size: 224
+  split_manifest: VERIFY_ACTUAL_SOURCE_IDENTITY_SPLIT_MANIFEST
+model:
+  name: cafr_net
+  backbone: convnext_tiny
+  pretrained: true
+  dropout: 0.25
+training:
+  optimizer: adamw
+  weight_decay: 0.05
+  warmup_epochs: 2
+  total_epochs: 20
+  backbone_lr: 0.00002
+  head_lr: 0.0002
+  batch_size: 32
+  mixed_precision: true
+  early_stopping_patience: 5
+loss:
+  classification: cross_entropy
+  paired_consistency: symmetric_kl
+  consistency_weight: 0.25
+evaluation:
+  seeds: [42, 123, 2026]
+  metrics: [top1_accuracy, macro_f1, per_class_recall, ece, paired_flips]
+  paired_statistics: [bootstrap_ci, mcnemar_holm]

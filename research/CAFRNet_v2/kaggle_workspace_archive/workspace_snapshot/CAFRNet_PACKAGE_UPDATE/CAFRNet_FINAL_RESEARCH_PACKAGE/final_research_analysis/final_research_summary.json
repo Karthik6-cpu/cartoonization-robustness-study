@@ -1,0 +1,99 @@
+{
+    "experiment": "CAFR-Net v2 \u2014 Consolidated Evaluation",
+    "architecture": "cafrnet_v2",
+    "checkpoint_epoch": 30,
+    "seed": 42,
+    "dataset": "Imagenette2-320 official val directory",
+    "test_images": 3925,
+    "classes": [
+        "n01440764",
+        "n02102040",
+        "n02979186",
+        "n03000684",
+        "n03028079",
+        "n03394916",
+        "n03417042",
+        "n03425413",
+        "n03445777",
+        "n03888257"
+    ],
+    "model_config": {
+        "use_edge": true,
+        "use_semantic_fusion": true,
+        "use_attention": true
+    },
+    "conditions": [
+        {
+            "condition": "clean",
+            "images": 3925,
+            "accuracy": 0.9979617834394905,
+            "macro_precision": 0.9979892575739354,
+            "macro_recall": 0.9978958288432072,
+            "macro_f1": 0.9979405561149456,
+            "ECE_15_bins": 0.00206871096495605,
+            "multiclass_Brier_score": 0.003829710926645163,
+            "negative_log_likelihood": 0.012799033881165019
+        },
+        {
+            "condition": "noise_sigma20",
+            "images": 3925,
+            "accuracy": 0.9979617834394905,
+            "macro_precision": 0.9979518564424078,
+            "macro_recall": 0.997943821018368,
+            "macro_f1": 0.9979468800178083,
+            "ECE_15_bins": 0.0016995243737652221,
+            "multiclass_Brier_score": 0.0032857082541177273,
+            "negative_log_likelihood": 0.011160104774188334
+        },
+        {
+            "condition": "blur_radius2",
+            "images": 3925,
+            "accuracy": 0.9964331210191083,
+            "macro_precision": 0.9964909755663218,
+            "macro_recall": 0.9964199627708228,
+            "macro_f1": 0.996451642659621,
+            "ECE_15_bins": 0.003425575411243725,
+            "multiclass_Brier_score": 0.00698175954634879,
+            "negative_log_likelihood": 0.022783692469976007
+        },
+        {
+            "condition": "jpeg_quality20",
+            "images": 3925,
+            "accuracy": 0.9971974522292993,
+            "macro_precision": 0.9972260407895931,
+            "macro_recall": 0.9972338530889233,
+            "macro_f1": 0.9972270466031723,
+            "ECE_15_bins": 0.0021939397617510206,
+            "multiclass_Brier_score": 0.004581597909306013,
+            "negative_log_likelihood": 0.017073370028851845
+        },
+        {
+            "condition": "brightness_050",
+            "images": 3925,
+            "accuracy": 0.9974522292993631,
+            "macro_precision": 0.9975647046760944,
+            "macro_recall": 0.997359306541979,
+            "macro_f1": 0.9974546959001891,
+            "ECE_15_bins": 0.002286637535520407,
+            "multiclass_Brier_score": 0.004394820656950529,
+            "negative_log_likelihood": 0.01332143957536182
+        },
+        {
+            "condition": "brightness_150",
+            "images": 3925,
+            "accuracy": 0.996687898089172,
+            "macro_precision": 0.9967153575289543,
+            "macro_recall": 0.9965964480610878,
+            "macro_f1": 0.9966514877186917,
+            "ECE_15_bins": 0.002879644214727334,
+            "multiclass_Brier_score": 0.006104738683796648,
+            "negative_log_likelihood": 0.018387691953936244
+        }
+    ],
+    "notes": [
+        "Clean evaluation uses deterministic resize and ImageNet normalization.",
+        "Corruption tests use stronger settings than the training augmentation ranges.",
+        "Corruption tests are stress evaluations, not a separate external dataset.",
+        "Ablation and baseline comparisons require separately trained checkpoints."
+    ]
+}

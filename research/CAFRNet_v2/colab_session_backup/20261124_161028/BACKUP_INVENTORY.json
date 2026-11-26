@@ -1,0 +1,87 @@
+{
+  "backup_timestamp_utc": "20261124_161028",
+  "repository": "Karthik6-cpu/cartoonization-robustness-study",
+  "branch": "research/cafr-net-phase-iv",
+  "copied_file_count": 48,
+  "copied_files": [
+    "research/CAFRNet_v2/colab_session_backup/20261124_161028/cafr_runs/new_split_seed314_artifacts.zip",
+    "research/CAFRNet_v2/colab_session_backup/20261124_161028/cafr_runs/CAFRNet_Final_Experimental_Results.zip",
+    "research/CAFRNet_v2/colab_session_backup/20261124_161028/cafr_runs/edge_original_vs_corrected_comparison.csv",
+    "research/CAFRNet_v2/colab_session_backup/20261124_161028/cafr_runs/CAFRNet_Final_Research_Package.zip",
+    "research/CAFRNet_v2/colab_session_backup/20261124_161028/cafr_runs/edge_original_seed314/stress_predictions.csv",
+    "research/CAFRNet_v2/colab_session_backup/20261124_161028/cafr_runs/edge_original_seed314/history.jsonl",
+    "research/CAFRNet_v2/colab_session_backup/20261124_161028/cafr_runs/edge_original_seed314/history.json",
+    "research/CAFRNet_v2/colab_session_backup/20261124_161028/cafr_runs/edge_original_seed314/run_metadata.json",
+    "research/CAFRNet_v2/colab_session_backup/20261124_161028/cafr_runs/final_comparison/mcnemar_holm_tests.csv",
+    "research/CAFRNet_v2/colab_session_backup/20261124_161028/cafr_runs/final_comparison/efficiency_benchmark.csv",
+    "research/CAFRNet_v2/colab_session_backup/20261124_161028/cafr_runs/final_comparison/classwise_f1.csv",
+    "research/CAFRNet_v2/colab_session_backup/20261124_161028/cafr_runs/final_comparison/model_performance.csv",
+    "research/CAFRNet_v2/colab_session_backup/20261124_161028/cafr_runs/final_comparison/accuracy_comparison.png",
+    "research/CAFRNet_v2/colab_session_backup/20261124_161028/cafr_runs/final_comparison/RESEARCH_RESULTS_SUMMARY.md",
+    "research/CAFRNet_v2/colab_session_backup/20261124_161028/cafr_runs/final_comparison/classwise_f1_corrected.csv",
+    "research/CAFRNet_v2/colab_session_backup/20261124_161028/cafr_runs/final_comparison/accuracy_degradation.png",
+    "research/CAFRNet_v2/colab_session_backup/20261124_161028/cafr_runs/final_comparison/efficiency_comparison.png",
+    "research/CAFRNet_v2/colab_session_backup/20261124_161028/cafr_runs/final_comparison/paired_bootstrap_accuracy_CI.csv",
+    "research/CAFRNet_v2/colab_session_backup/20261124_161028/cafr_runs/final_comparison/mcnemar_holm_exact.csv",
+    "research/CAFRNet_v2/colab_session_backup/20261124_161028/cafr_runs/final_comparison/consolidated_results.csv",
+    "research/CAFRNet_v2/colab_session_backup/20261124_161028/cafr_runs/new_split_seed314/history.json",
+    "research/CAFRNet_v2/colab_session_backup/20261124_161028/cafr_runs/new_split_seed314/run_metadata.json",
+    "research/CAFRNet_v2/colab_session_backup/20261124_161028/cafr_runs/edge_corrected_seed314/stress_predictions.csv",
+    "research/CAFRNet_v2/colab_session_backup/20261124_161028/cafr_runs/edge_corrected_seed314/paired_statistical_tests.csv",
+    "research/CAFRNet_v2/colab_session_backup/20261124_161028/cafr_runs/edge_corrected_seed314/history.jsonl",
+    "research/CAFRNet_v2/colab_session_backup/20261124_161028/cafr_runs/edge_corrected_seed314/stress_test_summary.csv",
+    "research/CAFRNet_v2/colab_session_backup/20261124_161028/cafr_runs/edge_corrected_seed314/history.json",
+    "research/CAFRNet_v2/colab_session_backup/20261124_161028/cafr_runs/edge_corrected_seed314/run_metadata.json",
+    "research/CAFRNet_v2/colab_session_backup/20261124_161028/cafr_runs/resnet18_matched_seed314/stress_predictions.csv",
+    "research/CAFRNet_v2/colab_session_backup/20261124_161028/cafr_runs/resnet18_matched_seed314/best_resnet18.pt",
+    "research/CAFRNet_v2/colab_session_backup/20261124_161028/cafr_runs/resnet18_matched_seed314/history.json",
+    "research/CAFRNet_v2/colab_session_backup/20261124_161028/cafr_runs/resnet18_matched_seed314/run_metadata.json",
+    "research/CAFRNet_v2/colab_session_backup/20261124_161028/cafr_runs/CAFRNet_Final_Research_Package/cafr_net_seed314_stress_predictions.csv",
+    "research/CAFRNet_v2/colab_session_backup/20261124_161028/cafr_runs/CAFRNet_Final_Research_Package/stress_predictions.csv",
+    "research/CAFRNet_v2/colab_session_backup/20261124_161028/cafr_runs/CAFRNet_Final_Research_Package/efficiency_benchmark.csv",
+    "research/CAFRNet_v2/colab_session_backup/20261124_161028/cafr_runs/CAFRNet_Final_Research_Package/model_performance.csv",
+    "research/CAFRNet_v2/colab_session_backup/20261124_161028/cafr_runs/CAFRNet_Final_Research_Package/SHA256SUMS.txt",
+    "research/CAFRNet_v2/colab_session_backup/20261124_161028/cafr_runs/CAFRNet_Final_Research_Package/accuracy_comparison.png",
+    "research/CAFRNet_v2/colab_session_backup/20261124_161028/cafr_runs/CAFRNet_Final_Research_Package/RESEARCH_RESULTS_SUMMARY.md",
+    "research/CAFRNet_v2/colab_session_backup/20261124_161028/cafr_runs/CAFRNet_Final_Research_Package/classwise_f1_corrected.csv",
+    "research/CAFRNet_v2/colab_session_backup/20261124_161028/cafr_runs/CAFRNet_Final_Research_Package/resnet18_seed314_stress_predictions.csv",
+    "research/CAFRNet_v2/colab_session_backup/20261124_161028/cafr_runs/CAFRNet_Final_Research_Package/accuracy_degradation.png",
+    "research/CAFRNet_v2/colab_session_backup/20261124_161028/cafr_runs/CAFRNet_Final_Research_Package/efficiency_comparison.png",
+    "research/CAFRNet_v2/colab_session_backup/20261124_161028/cafr_runs/CAFRNet_Final_Research_Package/paired_bootstrap_accuracy_CI.csv",
+    "research/CAFRNet_v2/colab_session_backup/20261124_161028/cafr_runs/CAFRNet_Final_Research_Package/mcnemar_holm_exact.csv",
+    "research/CAFRNet_v2/colab_session_backup/20261124_161028/cafr_runs/CAFRNet_Final_Research_Package/consolidated_results.csv",
+    "research/CAFRNet_v2/colab_session_backup/20261124_161028/CAFRNet_Final_Research_Package.zip",
+    "notebooks/CAFRNet_v2_Final_Research_Experiments_2.ipynb"
+  ],
+  "skipped_large_files": [
+    {
+      "path": "/content/cafr_runs/edge_original_seed314_artifacts.zip",
+      "size_bytes": 448806318
+    },
+    {
+      "path": "/content/cafr_runs/edge_corrected_seed314_artifacts.zip",
+      "size_bytes": 448811247
+    },
+    {
+      "path": "/content/cafr_runs/edge_original_seed314/best_cafr_net.pt",
+      "size_bytes": 121228703
+    },
+    {
+      "path": "/content/cafr_runs/edge_original_seed314/latest_cafr_net.pt",
+      "size_bytes": 363668665
+    },
+    {
+      "path": "/content/cafr_runs/edge_corrected_seed314/best_cafr_net.pt",
+      "size_bytes": 121228703
+    },
+    {
+      "path": "/content/cafr_runs/edge_corrected_seed314/latest_cafr_net.pt",
+      "size_bytes": 363668665
+    },
+    {
+      "path": "/content/cafr_runs/resnet18_matched_seed314/latest_resnet18.pt",
+      "size_bytes": 134315047
+    }
+  ],
+  "skipped_files": []
+}

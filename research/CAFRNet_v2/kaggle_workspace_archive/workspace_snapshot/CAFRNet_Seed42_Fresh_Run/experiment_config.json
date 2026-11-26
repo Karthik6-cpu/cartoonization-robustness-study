@@ -1,0 +1,11 @@
+{
+    "architecture": "cafrnet_v2",
+    "seed": 42,
+    "start_epoch": 1,
+    "total_epochs": 20,
+    "batch_size": 16,
+    "image_size": 224,
+    "optimizer": "AdamW",
+    "resume": false,
+    "checkpoint_every_epoch": true
+}

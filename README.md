@@ -109,7 +109,78 @@ BICR-Net is a prototype, not a validated solution to general real-world distribu
 
 ---
 
-## 3. Quick research extension: matched compound-corruption pilot
+
+## 3. Phase IV: CAFR-Net v2 — Cartoon-Aware Feature Refinement Network
+
+CAFR-Net v2 investigates feature refinement for image classification under
+cartoonization-induced domain shifts.
+
+### Research objectives
+
+- Improve semantic feature representations across visual domains.
+- Investigate the contribution of edge information to cartoonized image recognition.
+- Evaluate multi-scale semantic feature fusion.
+- Study channel-spatial attention for feature refinement.
+- Examine generalization on an external image dataset.
+
+### Architecture
+
+1. **ConvNeXt-Tiny backbone:** extracts hierarchical visual representations.
+2. **Multi-scale feature projections:** align features from different backbone stages.
+3. **Semantic scale fusion:** combines multi-scale semantic information.
+4. **Edge refinement:** incorporates Sobel-based edge information.
+5. **Channel-spatial attention:** refines informative channels and spatial regions.
+6. **Classification head:** generates final class predictions.
+
+### Experimental evaluation
+
+**Imagenette**
+
+- 10-class image classification benchmark.
+- 13,394 verified images.
+- Training: 8,048 images.
+- Validation: 1,421 images.
+- Testing: 3,925 images.
+- Three independent seeds: 42, 123 and 2026.
+- Evaluation domains: Original, OpenCV, AnimeGANv2 and Stable Diffusion.
+- Ablations: without edge refinement, semantic fusion and attention.
+
+**Oxford-IIIT Pet**
+
+- 37-class external dataset.
+- Single-seed evaluation using seed 42.
+- Original and OpenCV-cartoonized test images.
+
+### Three-seed Imagenette results
+
+| Evaluation domain | Mean accuracy |
+|---|---:|
+| Original | 99.771% |
+| OpenCV | 90.403% |
+| AnimeGANv2 | 98.735% |
+| Stable Diffusion | 94.726% |
+
+These results describe the evaluated Imagenette experiments. They should not
+be interpreted as evidence of universal robustness. OpenCV performance also
+shows seed sensitivity.
+
+### Research package
+
+- [CAFR-Net v2 documentation](research/CAFRNet_v2/README.md)
+- [Consolidated results](research/CAFRNet_v2/RESULTS_SUMMARY.md)
+- [Source code](research/CAFRNet_v2/source/)
+- [Experimental results](research/CAFRNet_v2/results/)
+- [Dataset manifests](research/CAFRNet_v2/manifests/)
+
+### Limitations
+
+- Oxford-IIIT Pet evaluation uses a single seed.
+- Component ablations use single-seed experiments.
+- Results on Imagenette and Oxford-IIIT Pet must be reported separately.
+- Further independent-dataset experiments are needed before making broader
+  generalization claims.
+
+## 4. Quick research extension: matched compound-corruption pilot
 
 A deterministic image-generation utility and protocol have been added under [research_extension](research_extension/README.md).
 
@@ -128,7 +199,7 @@ Use only an already-held-out test split. Do not generate variants before splitti
 
 ---
 
-## 4. Research journal structure
+## 5. Research journal structure
 
 The integrated research journal consolidates the experimental record and includes:
 
@@ -145,7 +216,7 @@ The journal distinguishes measured results from conceptual proposals and flags u
 
 ---
 
-## 5. Reproducibility and publication checklist
+## 6. Reproducibility and publication checklist
 
 Before submitting a paper or claiming generalization:
 
@@ -159,7 +230,7 @@ Before submitting a paper or claiming generalization:
 8. Report confidence intervals, per-class metrics and paired source-level tests.
 9. Verify bibliographic metadata, licenses, dataset attribution and exact pretrained model citations.
 
-## 6. Scope and claim discipline
+## 7. Scope and claim discipline
 
 - Phase I is a matched evaluation of appearance transformations and JPEG compression; it is not a new cartoonization generator.
 - Phase III is a separate synthetic compositional-corruption prototype; it is not a direct continuation of the Phase I benchmark.
@@ -170,3 +241,73 @@ Before submitting a paper or claiming generalization:
 ---
 
 **Repository:** [Karthik6-cpu/cartoonization-robustness-study](https://github.com/Karthik6-cpu/cartoonization-robustness-study)
+
+
+## 8. Phase IV update: matched ResNet-18 baseline and statistical validation
+
+A further matched comparison was completed on the reconstructed Imagenette split using seed 314. CAFR-Net v2 and ResNet-18 were evaluated on the same 3,925 test identities under six conditions. The two prediction files were audited for one-to-one matching by `condition` and `relative_path`; 23,550 paired image-condition records were confirmed.
+
+**Important provenance distinction:** this seed-314 comparison uses a reconstructed split created with stratified `train_test_split(test_size=1421, random_state=42)`. It is a separate matched-baseline experiment and must not be conflated with the earlier three-seed CAFR-Net results or the original Phase I ResNet-18 track.
+
+### Matched test accuracy
+
+| Condition | CAFR-Net v2 | ResNet-18 | CAFR-Net advantage |
+|---|---:|---:|---:|
+| Original | 99.796% | 98.140% | +1.656 pp |
+| JPEG Q25 | 99.720% | 97.783% | +1.936 pp |
+| JPEG Q50 | 99.771% | 97.860% | +1.911 pp |
+| Gaussian blur | 99.465% | 96.153% | +3.312 pp |
+| Gaussian noise | 99.694% | 97.299% | +2.395 pp |
+| Brightness | 99.796% | 97.401% | +2.395 pp |
+
+### Paired bootstrap confidence intervals
+
+Paired image-level bootstrap resampling used 2,000 repetitions. All six percentile 95% confidence intervals for the accuracy difference (CAFR-Net minus ResNet-18) were above zero.
+
+| Condition | Advantage (pp) | 95% CI (pp) |
+|---|---:|---:|
+| Original | 1.6561 | [1.2739, 2.0892] |
+| JPEG Q25 | 1.9363 | [1.5032, 2.3949] |
+| JPEG Q50 | 1.9108 | [1.4777, 2.3701] |
+| Blur | 3.3121 | [2.7006, 3.9236] |
+| Noise | 2.3949 | [1.8854, 2.9045] |
+| Brightness | 2.3949 | [1.9108, 2.8790] |
+
+The bootstrap resamples test images, not independent training runs. The matched comparison is single-seed evidence and does not establish multi-seed superiority.
+
+### Exact paired significance tests
+
+Exact two-sided McNemar tests with Holm correction were significant in all six conditions. The analysis uses paired correctness outcomes; adjusted p-values are recorded in `results/matched_resnet18_seed314/mcnemar_holm_exact.csv`. These tests complement, but do not replace, the bootstrap intervals.
+
+### Computational trade-off
+
+The reported Tesla T4 benchmark used 224×224 inputs, 20 warm-up iterations and 100 repetitions.
+
+| Model | Parameters (M) | Batch-1 latency (ms) | Batch-32 latency (ms) |
+|---|---:|---:|---:|
+| CAFR-Net v2 | 30.281 | 15.975 | 154.168 |
+| ResNet-18 | 11.182 | 3.609 | 33.494 |
+
+CAFR-Net v2 has higher accuracy in this matched experiment but uses approximately 2.71× as many parameters and has higher inference latency. It should not be described as lightweight or faster than ResNet-18.
+
+### Matched-comparison artifacts
+
+- [Matched accuracy results](research/CAFRNet_v2/results/matched_resnet18_seed314/model_performance.csv)
+- [Paired bootstrap intervals](research/CAFRNet_v2/results/matched_resnet18_seed314/paired_bootstrap_accuracy_CI.csv)
+- [Exact McNemar and Holm results](research/CAFRNet_v2/results/matched_resnet18_seed314/mcnemar_holm_exact.csv)
+- [Efficiency benchmark](research/CAFRNet_v2/results/matched_resnet18_seed314/efficiency_benchmark.csv)
+- [Protocol and interpretation notes](research/CAFRNet_v2/results/matched_resnet18_seed314/README.md)
+
+**Scope limitation:** the matched ResNet-18 comparison currently uses one seed (314). Oxford-IIIT Pet results remain a single-seed CAFR-Net evaluation; no matched ResNet-18 Oxford-IIIT Pet comparison is claimed here.
+
+## CAFR-Net v2 — Final Colab artifact release
+
+The large seed-314 model checkpoints and complete Colab experiment archives are published as downloadable assets in the [CAFR-Net v2 final Colab artifact release](https://github.com/Karthik6-cpu/cartoonization-robustness-study/releases/tag/cafrnet-v2-colab-artifacts-2026-11-24).
+
+The release includes:
+- Original and corrected CAFR-Net seed-314 experiment archives.
+- Best and latest checkpoints for the original CAFR-Net run.
+- Best and latest checkpoints for the edge-corrected CAFR-Net run.
+- Latest matched ResNet-18 seed-314 checkpoint.
+
+The dated Colab-session backup, notebook, predictions, histories, metadata, statistical outputs and plots are stored under [research/CAFRNet_v2/colab_session_backup](research/CAFRNet_v2/colab_session_backup). Check the release description and asset filenames when downloading; checkpoint variants must not be mixed.

@@ -1,0 +1,5 @@
+Domain,Mean_Accuracy_Percent,Std_Percentage_Points
+Original,99.771,0.044
+OpenCV,90.403,4.18
+AnimeGANv2,98.735,0.55
+Stable Diffusion,94.726,0.602

@@ -1,0 +1,3 @@
+model,parameters_M,trainable_parameters_M,batch1_latency_ms,batch1_peak_extra_memory_MB,batch32_latency_ms,batch32_peak_extra_memory_MB
+CAFR-Net,30.281441,30.281441,15.97543847000452,11.484375,154.16786699999648,369.5
+ResNet18,11.181642,11.181642,3.6087022900028387,26.478515625,33.49438351000572,196.0

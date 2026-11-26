@@ -1,0 +1,33 @@
+{
+  "evaluation_dataset": "/kaggle/input/datasets/xbinchen/imagenette2-320/imagenette2-320/val",
+  "images_per_condition": 3925,
+  "models": [
+    "CAFRNet_Full",
+    "CAFRNet_No_Edge",
+    "CAFRNet_No_Semantic_Fusion",
+    "CAFRNet_No_Attention",
+    "ResNet18",
+    "ConvNeXt_Tiny"
+  ],
+  "conditions": [
+    "clean",
+    "noise_sigma20",
+    "blur_radius2",
+    "jpeg_quality20",
+    "brightness_050",
+    "brightness_150"
+  ],
+  "device": "cuda",
+  "image_size": 224,
+  "normalization_mean": [
+    0.485,
+    0.456,
+    0.406
+  ],
+  "normalization_std": [
+    0.229,
+    0.224,
+    0.225
+  ],
+  "note": "All models evaluated on the same official validation images. Corruptions are controlled stress tests, not external datasets."
+}

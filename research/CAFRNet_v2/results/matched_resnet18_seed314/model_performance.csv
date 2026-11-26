@@ -1,0 +1,7 @@
+condition,cafr_accuracy_percent,resnet18_accuracy_percent,accuracy_advantage_pp,cafr_macro_f1,resnet18_macro_f1
+original,99.796,98.140,1.6561,0.99796,0.98137
+jpeg25,99.720,97.783,1.9363,0.99721,0.97784
+jpeg50,99.771,97.860,1.9108,0.99772,0.97860
+blur,99.465,96.153,3.3121,0.99464,0.96162
+noise,99.694,97.299,2.3949,0.99693,0.97302
+brightness,99.796,97.401,2.3949,0.99796,0.97398

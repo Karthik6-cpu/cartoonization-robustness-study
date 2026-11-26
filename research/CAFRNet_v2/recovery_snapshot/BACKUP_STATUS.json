@@ -1,0 +1,7 @@
+{
+  "date": "2026-11-25",
+  "seed42": "Completed training and evaluation; checkpoints preserved in ZIP",
+  "seed123": "Partial; latest checkpoint saved at epoch 1/20",
+  "other_matched_runs": "Not started",
+  "large_checkpoints": "Included in ZIP, excluded from ordinary Git commit"
+}

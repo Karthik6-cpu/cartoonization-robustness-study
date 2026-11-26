@@ -1,0 +1,7 @@
+condition,cafr_only_correct,resnet18_only_correct,discordant_pairs,exact_two_sided_p,holm_adjusted_p
+original,67,2,69,8.185726e-18,8.185726e-18
+jpeg25,78,2,80,5.361785e-21,1.608535e-20
+jpeg50,79,4,83,3.997325e-19,7.994651e-19
+blur,138,8,146,1.001693e-31,6.010155e-31
+noise,97,3,100,2.630867e-25,1.315433e-24
+brightness,97,3,100,2.630867e-25,1.315433e-24

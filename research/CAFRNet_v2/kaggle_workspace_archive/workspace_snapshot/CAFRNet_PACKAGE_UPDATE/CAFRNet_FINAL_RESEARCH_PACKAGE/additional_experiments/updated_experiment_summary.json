@@ -1,0 +1,265 @@
+{
+  "project": "CAFR-Net v2",
+  "package_update_date": "2026-11-26T09:07:47",
+  "dataset": "Imagenette2-320",
+  "official_validation_images": 3925,
+  "device_for_reported_gpu_experiments": "NVIDIA Tesla T4 (Kaggle)",
+  "new_experiments": {
+    "opencv_cartoonization": [
+      {
+        "model": "ConvNeXt_Tiny",
+        "condition": "opencv_cartoon_sigma_s60_sigma_r045",
+        "correct": 3896,
+        "total": 3925,
+        "accuracy": 0.9926114649681528,
+        "accuracy_percent": 99.26114649681529,
+        "seconds": 258.44672870635986
+      },
+      {
+        "model": "CAFRNet_Full",
+        "condition": "opencv_cartoon_sigma_s60_sigma_r045",
+        "correct": 3889,
+        "total": 3925,
+        "accuracy": 0.990828025477707,
+        "accuracy_percent": 99.0828025477707,
+        "seconds": 249.21253299713132
+      },
+      {
+        "model": "CAFRNet_No_Semantic_Fusion",
+        "condition": "opencv_cartoon_sigma_s60_sigma_r045",
+        "correct": 3881,
+        "total": 3925,
+        "accuracy": 0.9887898089171976,
+        "accuracy_percent": 98.87898089171976,
+        "seconds": 244.38252663612369
+      },
+      {
+        "model": "CAFRNet_No_Edge",
+        "condition": "opencv_cartoon_sigma_s60_sigma_r045",
+        "correct": 3870,
+        "total": 3925,
+        "accuracy": 0.9859872611464968,
+        "accuracy_percent": 98.59872611464968,
+        "seconds": 245.5021207332611
+      },
+      {
+        "model": "CAFRNet_No_Attention",
+        "condition": "opencv_cartoon_sigma_s60_sigma_r045",
+        "correct": 3850,
+        "total": 3925,
+        "accuracy": 0.9808917197452228,
+        "accuracy_percent": 98.08917197452227,
+        "seconds": 244.48578524589536
+      },
+      {
+        "model": "ResNet18",
+        "condition": "opencv_cartoon_sigma_s60_sigma_r045",
+        "correct": 3735,
+        "total": 3925,
+        "accuracy": 0.951592356687898,
+        "accuracy_percent": 95.1592356687898,
+        "seconds": 244.80161118507385
+      }
+    ],
+    "paired_statistics": [
+      {
+        "condition": "clean",
+        "images": 3925,
+        "CAFR_accuracy_%": 99.79617834394904,
+        "ConvNeXt_accuracy_%": 99.89808917197452,
+        "difference_CAFR_minus_ConvNeXt_pp": -0.1019108280254777,
+        "CAFR_only_correct": 1,
+        "ConvNeXt_only_correct": 5,
+        "discordant_pairs": 6,
+        "McNemar_p": 0.21875,
+        "bootstrap_95CI_low_pp": -0.2292993630573225,
+        "bootstrap_95CI_high_pp": 0.0254777070063716,
+        "Holm_adjusted_p": 1.0,
+        "significant_0.05": false
+      },
+      {
+        "condition": "noise_sigma20",
+        "images": 3925,
+        "CAFR_accuracy_%": 99.4140127388535,
+        "ConvNeXt_accuracy_%": 99.31210191082802,
+        "difference_CAFR_minus_ConvNeXt_pp": 0.1019108280254777,
+        "CAFR_only_correct": 18,
+        "ConvNeXt_only_correct": 14,
+        "discordant_pairs": 32,
+        "McNemar_p": 0.5966148958541453,
+        "bootstrap_95CI_low_pp": -0.1783439490445793,
+        "bootstrap_95CI_high_pp": 0.4076433121019129,
+        "Holm_adjusted_p": 1.0,
+        "significant_0.05": false
+      },
+      {
+        "condition": "blur_radius2",
+        "images": 3925,
+        "CAFR_accuracy_%": 98.26751592356688,
+        "ConvNeXt_accuracy_%": 98.5732484076433,
+        "difference_CAFR_minus_ConvNeXt_pp": -0.3057324840764331,
+        "CAFR_only_correct": 24,
+        "ConvNeXt_only_correct": 36,
+        "discordant_pairs": 60,
+        "McNemar_p": 0.1550019040032606,
+        "bootstrap_95CI_low_pp": -0.6878980891719788,
+        "bootstrap_95CI_high_pp": 0.0764331210191149,
+        "Holm_adjusted_p": 0.9300114240195636,
+        "significant_0.05": false
+      },
+      {
+        "condition": "jpeg_quality20",
+        "images": 3925,
+        "CAFR_accuracy_%": 99.26114649681529,
+        "ConvNeXt_accuracy_%": 99.36305732484075,
+        "difference_CAFR_minus_ConvNeXt_pp": -0.1019108280254777,
+        "CAFR_only_correct": 8,
+        "ConvNeXt_only_correct": 12,
+        "discordant_pairs": 20,
+        "McNemar_p": 0.5034446716308594,
+        "bootstrap_95CI_low_pp": -0.3312101910828091,
+        "bootstrap_95CI_high_pp": 0.1019108280254865,
+        "Holm_adjusted_p": 1.0,
+        "significant_0.05": false
+      },
+      {
+        "condition": "brightness_050",
+        "images": 3925,
+        "CAFR_accuracy_%": 99.7452229299363,
+        "ConvNeXt_accuracy_%": 99.8471337579618,
+        "difference_CAFR_minus_ConvNeXt_pp": -0.1019108280254777,
+        "CAFR_only_correct": 2,
+        "ConvNeXt_only_correct": 6,
+        "discordant_pairs": 8,
+        "McNemar_p": 0.2890625,
+        "bootstrap_95CI_low_pp": -0.2547770700636942,
+        "bootstrap_95CI_high_pp": 0.0254777070063716,
+        "Holm_adjusted_p": 1.0,
+        "significant_0.05": false
+      },
+      {
+        "condition": "brightness_150",
+        "images": 3925,
+        "CAFR_accuracy_%": 99.61783439490446,
+        "ConvNeXt_accuracy_%": 99.89808917197452,
+        "difference_CAFR_minus_ConvNeXt_pp": -0.2802547770700637,
+        "CAFR_only_correct": 2,
+        "ConvNeXt_only_correct": 13,
+        "discordant_pairs": 15,
+        "McNemar_p": 0.00738525390625,
+        "bootstrap_95CI_low_pp": -0.4840764331210168,
+        "bootstrap_95CI_high_pp": -0.1019108280254754,
+        "Holm_adjusted_p": 0.05169677734375,
+        "significant_0.05": false
+      },
+      {
+        "condition": "opencv_cartoon_sigma_s60_sigma_r045",
+        "images": 3925,
+        "CAFR_accuracy_%": 99.0828025477707,
+        "ConvNeXt_accuracy_%": 99.26114649681529,
+        "difference_CAFR_minus_ConvNeXt_pp": -0.1783439490445859,
+        "CAFR_only_correct": 15,
+        "ConvNeXt_only_correct": 22,
+        "discordant_pairs": 37,
+        "McNemar_p": 0.3240086000878364,
+        "bootstrap_95CI_low_pp": -0.4840764331210168,
+        "bootstrap_95CI_high_pp": 0.1273885350318471,
+        "Holm_adjusted_p": 1.0,
+        "significant_0.05": false
+      }
+    ],
+    "severe_corruptions": [
+      {
+        "model": "CAFRNet_Full",
+        "condition": "noise_sigma40",
+        "correct": 3889,
+        "total": 3925,
+        "accuracy_percent": 99.0828,
+        "seconds_approx": 30.0
+      },
+      {
+        "model": "CAFRNet_Full",
+        "condition": "blur_severe",
+        "correct": 3914,
+        "total": 3925,
+        "accuracy_percent": 99.7197,
+        "seconds_approx": 12.0
+      },
+      {
+        "model": "CAFRNet_Full",
+        "condition": "jpeg_quality10",
+        "correct": 3903,
+        "total": 3925,
+        "accuracy_percent": 99.4395,
+        "seconds_approx": 12.0
+      },
+      {
+        "model": "ConvNeXt_Tiny",
+        "condition": "noise_sigma40",
+        "correct": 3886,
+        "total": 3925,
+        "accuracy_percent": 99.0064,
+        "seconds_approx": 29.4
+      },
+      {
+        "model": "ConvNeXt_Tiny",
+        "condition": "blur_severe",
+        "correct": 3919,
+        "total": 3925,
+        "accuracy_percent": 99.8471,
+        "seconds_approx": 13.8
+      },
+      {
+        "model": "ConvNeXt_Tiny",
+        "condition": "jpeg_quality10",
+        "correct": 3908,
+        "total": 3925,
+        "accuracy_percent": 99.5669,
+        "seconds_approx": 15.0
+      }
+    ],
+    "efficiency": [
+      {
+        "model": "CAFRNet_Full",
+        "parameters": 30281441,
+        "trainable_parameters": 30281441,
+        "batch1_latency_ms": 10.7209228800275,
+        "throughput_images_sec": 93.2755520388031,
+        "peak_gpu_memory_MB": 149.1220703125
+      },
+      {
+        "model": "ConvNeXt_Tiny",
+        "parameters": 27827818,
+        "trainable_parameters": 27827818,
+        "batch1_latency_ms": 7.183733969977766,
+        "throughput_images_sec": 139.20337308970463,
+        "peak_gpu_memory_MB": 139.7421875
+      },
+      {
+        "model": "ResNet18",
+        "parameters": 11181642,
+        "trainable_parameters": 11181642,
+        "batch1_latency_ms": 3.158368739968864,
+        "throughput_images_sec": 316.6191418199821,
+        "peak_gpu_memory_MB": 76.8037109375
+      }
+    ]
+  },
+  "statistical_interpretation": {
+    "comparison": "CAFRNet_Full versus ConvNeXt_Tiny",
+    "conditions_tested": 7,
+    "holm_significant_conditions": 0,
+    "interpretation": "No tested condition showed a statistically significant difference after Holm correction at alpha=0.05."
+  },
+  "limitations_and_pending_work": [
+    "Historical OpenCV accuracy discrepancy (78.115% versus 90.403%) remains unresolved.",
+    "AnimeGANv2 and Stable Diffusion cartoonization evaluations remain pending.",
+    "Additional seeds 123 and 314 for CAFR-Net Full and ConvNeXt-Tiny remain pending.",
+    "Matched ConvNeXt-Tiny evaluation on Oxford-IIIT Pet remains pending.",
+    "Scratch-trained multi-seed ablations remain pending.",
+    "ConvNeXt plus CBAM and ConvNeXt plus AugMix remain pending.",
+    "Full ImageNet-C and PACS evaluations remain pending.",
+    "The severe-corruption tests are controlled stress tests, not a full ImageNet-C benchmark.",
+    "Efficiency measurements are specific to the reported Kaggle hardware and benchmark settings."
+  ]
+}

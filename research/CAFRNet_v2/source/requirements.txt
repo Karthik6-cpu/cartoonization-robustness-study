@@ -1,0 +1,11 @@
+torch
+torchvision
+diffusers
+transformers
+accelerate
+opencv-python
+pandas
+numpy
+matplotlib
+scikit-image
+Pillow

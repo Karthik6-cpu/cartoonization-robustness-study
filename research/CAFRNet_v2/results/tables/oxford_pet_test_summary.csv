@@ -1,0 +1,3 @@
+Condition,Accuracy_Percent,Macro_F1_Percent,ECE
+Original,94.603,94.552,0.01941
+OpenCV,86.781,86.66,0.051689

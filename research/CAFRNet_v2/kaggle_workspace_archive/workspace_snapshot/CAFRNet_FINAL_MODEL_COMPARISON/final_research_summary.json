@@ -1,0 +1,40 @@
+{
+  "project": "CAFR-Net v2",
+  "dataset": "Imagenette2-320",
+  "official_validation_images_per_condition": 3925,
+  "number_of_models": 6,
+  "number_of_conditions": 6,
+  "total_image_condition_evaluations": 141300,
+  "best_clean_model": "ConvNeXt_Tiny",
+  "best_clean_accuracy": 0.9989808917197452,
+  "best_clean_macro_f1": 0.998997716878336,
+  "best_average_corruption_model": "ConvNeXt_Tiny",
+  "best_average_corruption_accuracy": 0.9939872611464968,
+  "cafrnet_full_clean_accuracy": 0.9979617834394904,
+  "cafrnet_full_corruption_accuracy": {
+    "noise_sigma20": 0.9941401273885352,
+    "blur_radius2": 0.9826751592356688,
+    "jpeg_quality20": 0.9926114649681528,
+    "brightness_050": 0.9974522292993632,
+    "brightness_150": 0.9961783439490446
+  },
+  "evaluation_conditions": [
+    "clean",
+    "noise_sigma20",
+    "blur_radius2",
+    "jpeg_quality20",
+    "brightness_050",
+    "brightness_150"
+  ],
+  "interpretation": [
+    "ConvNeXt-Tiny achieved the highest clean accuracy.",
+    "CAFR-Net v2 outperformed ResNet-18 across all six evaluated conditions.",
+    "The full CAFR-Net configuration showed stronger blur and noise performance than its component-removal variants.",
+    "Performance differences must be interpreted in light of the warm-started, shorter ablation training budget."
+  ],
+  "limitations": [
+    "Corruption evaluations use controlled transformations of the same official validation images.",
+    "These results do not establish generalization to external datasets or real-world domain shifts.",
+    "Ablations were warm-started from the full-model checkpoint and fine-tuned for 10 epochs, unlike the 30-epoch full-model training."
+  ]
+}
