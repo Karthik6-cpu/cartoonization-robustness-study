@@ -1,0 +1,9 @@
+image_path,true_class,predicted_class,correct,confidence
+/kaggle/input/datasets/xbinchen/imagenette2-320/imagenette2-320/val/n02979186/n02979186_10232.JPEG,n02979186,n03425413,0,0.9073021411895752
+/kaggle/input/datasets/xbinchen/imagenette2-320/imagenette2-320/val/n02979186/n02979186_18940.JPEG,n02979186,n03425413,0,0.9993836879730223
+/kaggle/input/datasets/xbinchen/imagenette2-320/imagenette2-320/val/n02979186/n02979186_24591.JPEG,n02979186,n03425413,0,0.9910314083099364
+/kaggle/input/datasets/xbinchen/imagenette2-320/imagenette2-320/val/n03000684/ILSVRC2012_val_00011951.JPEG,n03000684,n02979186,0,0.953070342540741
+/kaggle/input/datasets/xbinchen/imagenette2-320/imagenette2-320/val/n03000684/n03000684_13920.JPEG,n03000684,n03417042,0,0.9993354678153992
+/kaggle/input/datasets/xbinchen/imagenette2-320/imagenette2-320/val/n03425413/n03425413_23312.JPEG,n03425413,n03028079,0,0.9999852180480956
+/kaggle/input/datasets/xbinchen/imagenette2-320/imagenette2-320/val/n03445777/n03445777_16150.JPEG,n03445777,n03888257,0,0.9997373223304749
+/kaggle/input/datasets/xbinchen/imagenette2-320/imagenette2-320/val/n03888257/n03888257_9932.JPEG,n03888257,n03000684,0,0.7028451561927795

@@ -1,0 +1,105 @@
+{
+    "architecture": "cafrnet_v2",
+    "seed": 42,
+    "completed_epochs": 12,
+    "next_planned_epoch": 13,
+    "checkpoint_status": "November 26 checkpoint unavailable",
+    "metrics": [
+        {
+            "seed": 42,
+            "architecture": "cafrnet_v2",
+            "epoch": 1,
+            "train_loss": 0.4240265705842768,
+            "val_loss": 0.012516850491268374,
+            "val_accuracy": 0.9989506820566632
+        },
+        {
+            "seed": 42,
+            "architecture": "cafrnet_v2",
+            "epoch": 2,
+            "train_loss": 0.1986316203049171,
+            "val_loss": 0.0109680111491652,
+            "val_accuracy": 0.9989506820566632
+        },
+        {
+            "seed": 42,
+            "architecture": "cafrnet_v2",
+            "epoch": 3,
+            "train_loss": 0.13291285761985044,
+            "val_loss": 0.008469299272172826,
+            "val_accuracy": 0.9989506820566632
+        },
+        {
+            "seed": 42,
+            "architecture": "cafrnet_v2",
+            "epoch": 4,
+            "train_loss": 0.07741360756196344,
+            "val_loss": 0.008561153203341328,
+            "val_accuracy": 0.9989506820566632
+        },
+        {
+            "seed": 42,
+            "architecture": "cafrnet_v2",
+            "epoch": 5,
+            "train_loss": 0.05509207118083861,
+            "val_loss": 0.00903586882270698,
+            "val_accuracy": 0.9979013641133263
+        },
+        {
+            "seed": 42,
+            "architecture": "cafrnet_v2",
+            "epoch": 6,
+            "train_loss": 0.04670948188746687,
+            "val_loss": 0.00593447021521669,
+            "val_accuracy": 0.9989506820566632
+        },
+        {
+            "seed": 42,
+            "architecture": "cafrnet_v2",
+            "epoch": 7,
+            "train_loss": 0.04318638281356902,
+            "val_loss": 0.00931532095512693,
+            "val_accuracy": 0.9979013641133263
+        },
+        {
+            "seed": 42,
+            "architecture": "cafrnet_v2",
+            "epoch": 8,
+            "train_loss": 0.03675928292336698,
+            "val_loss": 0.020825889618176302,
+            "val_accuracy": 0.9958027282266527
+        },
+        {
+            "seed": 42,
+            "architecture": "cafrnet_v2",
+            "epoch": 9,
+            "train_loss": 0.0239239439959675,
+            "val_loss": 0.018900346703391465,
+            "val_accuracy": 0.9958027282266527
+        },
+        {
+            "seed": 42,
+            "architecture": "cafrnet_v2",
+            "epoch": 10,
+            "train_loss": 0.024206070189166092,
+            "val_loss": 0.01126683643845498,
+            "val_accuracy": 0.9968520461699895
+        },
+        {
+            "seed": 42,
+            "architecture": "cafrnet_v2",
+            "epoch": 11,
+            "train_loss": 0.014815680340576362,
+            "val_loss": 0.015690098728531453,
+            "val_accuracy": 0.9968520461699895
+        },
+        {
+            "seed": 42,
+            "architecture": "cafrnet_v2",
+            "epoch": 12,
+            "train_loss": 0.018061510430270093,
+            "val_loss": 0.010710120002594773,
+            "val_accuracy": 0.9968520461699895
+        }
+    ]
+}

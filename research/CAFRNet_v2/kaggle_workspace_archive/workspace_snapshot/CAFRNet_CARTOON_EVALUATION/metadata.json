@@ -1,0 +1,29 @@
+{
+  "dataset": "/kaggle/input/datasets/xbinchen/imagenette2-320/imagenette2-320/val",
+  "images": 3925,
+  "classes": [
+    "n01440764",
+    "n02102040",
+    "n02979186",
+    "n03000684",
+    "n03028079",
+    "n03394916",
+    "n03417042",
+    "n03425413",
+    "n03445777",
+    "n03888257"
+  ],
+  "transformation": "cv2.stylization",
+  "sigma_s": 60,
+  "sigma_r": 0.45,
+  "models": [
+    "CAFRNet_Full",
+    "CAFRNet_No_Edge",
+    "CAFRNet_No_Semantic_Fusion",
+    "CAFRNet_No_Attention",
+    "ResNet18",
+    "ConvNeXt_Tiny"
+  ],
+  "device": "cuda",
+  "note": "Inference-only evaluation; no model retraining."
+}

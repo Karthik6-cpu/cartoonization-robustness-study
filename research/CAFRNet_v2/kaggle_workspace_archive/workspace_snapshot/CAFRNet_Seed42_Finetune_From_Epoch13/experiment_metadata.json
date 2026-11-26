@@ -1,0 +1,9 @@
+{
+    "experiment": "CAFRNet_v2_seed42_finetune",
+    "display_start_epoch": 13,
+    "initialized_from": "Recovered older CAFR-Net v2 seed42 epoch20 checkpoint",
+    "optimizer": "Fresh optimizer",
+    "scheduler": "Fresh scheduler",
+    "previous_november26_epochs_1_to_12": "Metrics preserved separately; exact checkpoint unavailable",
+    "created": "2026-11-26 03:04:56"
+}

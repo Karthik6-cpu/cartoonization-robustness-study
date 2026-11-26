@@ -1,0 +1,4 @@
+model,condition,correct,total,accuracy_percent,seconds
+ConvNeXt_Tiny,noise_sigma40,3886,3925,99.00636942675159,29.420656442642212
+ConvNeXt_Tiny,blur_severe,3919,3925,99.84713375796179,13.644906759262085
+ConvNeXt_Tiny,jpeg_quality10,3908,3925,99.56687898089172,14.856237649917603

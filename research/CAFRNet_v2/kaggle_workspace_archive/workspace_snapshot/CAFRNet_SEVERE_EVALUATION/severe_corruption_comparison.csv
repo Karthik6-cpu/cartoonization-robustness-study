@@ -1,0 +1,7 @@
+model,condition,correct,total,accuracy_percent,seconds_approx
+CAFRNet_Full,noise_sigma40,3889,3925,99.0828,30.0
+CAFRNet_Full,blur_severe,3914,3925,99.7197,12.0
+CAFRNet_Full,jpeg_quality10,3903,3925,99.4395,12.0
+ConvNeXt_Tiny,noise_sigma40,3886,3925,99.0064,29.4
+ConvNeXt_Tiny,blur_severe,3919,3925,99.8471,13.8
+ConvNeXt_Tiny,jpeg_quality10,3908,3925,99.5669,15.0
